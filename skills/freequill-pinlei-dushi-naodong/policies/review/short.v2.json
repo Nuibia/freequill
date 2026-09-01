@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "policy_id": "freequill-short-review-v2",
+  "roles": ["logic", "platform", "reader", "technique", "commonsense"],
+  "severity": {
+    "P0": "破坏主线、事实或基本可读性的致命问题",
+    "P1": "必须返修的明显质量问题",
+    "P2": "可保留的改进建议"
+  },
+  "exit": "五个隔离角色均 PASS，且 P0/P1 为零"
+}

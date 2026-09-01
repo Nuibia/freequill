@@ -1,0 +1,7 @@
+{
+  "schema_version": 2,
+  "policy_id": "topic-scoring@2",
+  "threshold": 75,
+  "criteria": { "relevance": 25, "specificity": 20, "dilemma_cost": 20, "ending_payoff": 20, "non_preachy": 15 },
+  "hard_gates": ["evidence_valid", "craft_supported", "not_generic_moral"]
+}

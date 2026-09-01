@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "policy_id": "freequill-long-review-v2",
+  "roles": ["logic", "editorial", "reader", "technique", "commonsense"],
+  "severity": {
+    "P0": "破坏正史、状态或主线的致命问题",
+    "P1": "必须返修的连续性、节奏或人物问题",
+    "P2": "可保留的改进建议"
+  },
+  "exit": "五个隔离角色均 PASS，且 P0/P1 为零"
+}

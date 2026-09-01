@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "policy_id": "selection-overall@2",
+  "threshold": 78,
+  "weights": { "premise": 0.45, "theme": 0.20, "title": 0.20, "platform_execution_fit": 0.15 },
+  "fast_eval_isolation_required": true,
+  "classic_requires_human_approval": true
+}
