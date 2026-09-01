@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "policy_id": "freequill-genre-xianyan-v2",
+  "core_emotion": "甜、虐或爽中的一种主情绪通过关系行动得到兑现",
+  "engine": "认知差、时间差与情感差形成拉扯，信息释放持续改变人物关系",
+  "red_lines": ["主角失去主体性", "为虐而虐", "核心信息过早耗尽", "靠重复误会代替人物行动"]
+}

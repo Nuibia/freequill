@@ -1,0 +1,7 @@
+{
+  "schema_version": 2,
+  "policy_id": "title-scoring@2",
+  "threshold": 75,
+  "criteria": { "genre_clarity": 20, "conflict_payoff": 25, "emotion": 20, "curiosity": 15, "naturalness": 10, "consistency": 10 },
+  "hard_gates": ["premise_consistent", "no_false_promise", "platform_safe"]
+}

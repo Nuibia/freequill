@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "skill": "freequill-pinlei-xuanhuan",
+  "deployment": "public-embedded-runtime",
+  "runtime": {
+    "embedded": true,
+    "entrypoint": "scripts/runtime.mjs",
+    "state_directory": "$FREEQUILL_HOME/.freequill/runtime-v2",
+    "default_user_home": "~/FreeQuill",
+    "default_works_directory": "我的作品",
+    "upgrade_preserves_existing_works": true
+  },
+  "entry_workflows": [
+    {
+      "workflow": "genre-diagnose@2",
+      "standalone": true,
+      "nested": true
+    }
+  ]
+}

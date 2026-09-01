@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "skill": "freequill-creation-suite",
+  "deployment": "public-embedded-runtime",
+  "runtime": {
+    "embedded": true,
+    "entrypoint": "scripts/runtime.mjs",
+    "state_directory": "$FREEQUILL_HOME/.freequill/runtime-v2",
+    "default_user_home": "~/FreeQuill",
+    "default_works_directory": "我的作品",
+    "upgrade_preserves_existing_works": true
+  },
+  "entry_workflows": [
+    {
+      "workflow": "fast-short@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "selection@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "scaffold@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "genre-diagnose@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "short-create@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "long-chapter@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "review-short@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "review-long@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "submission@2",
+      "standalone": true,
+      "nested": true
+    }
+  ]
+}

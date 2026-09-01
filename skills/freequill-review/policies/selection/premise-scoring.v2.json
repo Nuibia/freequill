@@ -1,0 +1,7 @@
+{
+  "schema_version": 2,
+  "policy_id": "premise-scoring@2",
+  "threshold": 75,
+  "criteria": { "clarity": 15, "desire_stakes": 20, "character_mechanism": 15, "differentiation": 20, "emotional_payoff": 15, "engine_durability": 15 },
+  "hard_gates": ["theme_consistent", "protagonist_can_act", "ending_can_pay_off"]
+}

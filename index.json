@@ -3,11 +3,101 @@
   "skills": [
     {
       "name": "freequill-xuanti",
-      "description": "开新书前的选题决策护栏：市场时效信号 × 写法可写性交叉决策，产出排序 premise 卡交用户拍板。",
-      "release": "R1",
+      "description": "开书前完成立意、Premise、标题与综合选题，也支持单环节运行。",
+      "release": "R2",
       "entry": "skills/freequill-xuanti/SKILL.md",
       "files": [
         "skills/freequill-xuanti/"
+      ]
+    },
+    {
+      "name": "freequill-scaffold",
+      "description": "根据已确认选题创建短篇或长篇用户作品空间。",
+      "release": "R2",
+      "entry": "skills/freequill-scaffold/SKILL.md",
+      "files": [
+        "skills/freequill-scaffold/"
+      ]
+    },
+    {
+      "name": "freequill-pinlei-dushi-naodong",
+      "description": "男频都市脑洞的爽点引擎、金手指限制与反击反馈诊断。",
+      "release": "R2",
+      "entry": "skills/freequill-pinlei-dushi-naodong/SKILL.md",
+      "files": [
+        "skills/freequill-pinlei-dushi-naodong/"
+      ]
+    },
+    {
+      "name": "freequill-pinlei-xuanhuan",
+      "description": "男频玄幻仙侠的成长循环、能力边界与连续性诊断。",
+      "release": "R2",
+      "entry": "skills/freequill-pinlei-xuanhuan/SKILL.md",
+      "files": [
+        "skills/freequill-pinlei-xuanhuan/"
+      ]
+    },
+    {
+      "name": "freequill-pinlei-guyan",
+      "description": "女频古言的主体性、进阶智斗与世界规则诊断。",
+      "release": "R2",
+      "entry": "skills/freequill-pinlei-guyan/SKILL.md",
+      "files": [
+        "skills/freequill-pinlei-guyan/"
+      ]
+    },
+    {
+      "name": "freequill-pinlei-xianyan",
+      "description": "女频现言的主情绪、关系拉扯与信息释放诊断。",
+      "release": "R2",
+      "entry": "skills/freequill-pinlei-xianyan/SKILL.md",
+      "files": [
+        "skills/freequill-pinlei-xianyan/"
+      ]
+    },
+    {
+      "name": "freequill-review",
+      "description": "短篇与长篇章节的五路隔离验稿。",
+      "release": "R2",
+      "entry": "skills/freequill-review/SKILL.md",
+      "files": [
+        "skills/freequill-review/"
+      ]
+    },
+    {
+      "name": "freequill-duanpian-chuangzuo",
+      "description": "短篇故事引擎、细纲、正文起草、返修和五路验稿。",
+      "release": "R2",
+      "entry": "skills/freequill-duanpian-chuangzuo/SKILL.md",
+      "files": [
+        "skills/freequill-duanpian-chuangzuo/"
+      ]
+    },
+    {
+      "name": "freequill-changpian-chuangzuo",
+      "description": "长篇章计划、正文起草、返修和连续性验稿。",
+      "release": "R2",
+      "entry": "skills/freequill-changpian-chuangzuo/SKILL.md",
+      "files": [
+        "skills/freequill-changpian-chuangzuo/"
+      ]
+    },
+    {
+      "name": "freequill-platform",
+      "description": "为已完成作品生成本地投稿物料，不执行上传或发布。",
+      "release": "R2",
+      "entry": "skills/freequill-platform/SKILL.md",
+      "files": [
+        "skills/freequill-platform/"
+      ]
+    },
+    {
+      "name": "freequill-creation-suite",
+      "description": "面向普通用户的完整创作入口，一句话完成 Fast 短故事或路由到任一独立环节。",
+      "release": "R2",
+      "entry": "skills/freequill-creation-suite/SKILL.md",
+      "files": [
+        "skills/freequill-creation-suite/"
       ]
     }
   ]
