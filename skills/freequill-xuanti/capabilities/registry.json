@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "capabilities": [
+    {
+      "id": "generate-topic-directions@1",
+      "kind": "llm",
+      "purpose": "生成有证据约束的立意与方向候选",
+      "output_contract": {
+        "required": [
+          "candidates"
+        ]
+      }
+    },
+    {
+      "id": "evaluate-topic-directions@1",
+      "kind": "llm-eval",
+      "purpose": "按立意评分卡逐项评分并核验硬闸",
+      "output_contract": {
+        "required": [
+          "evaluations"
+        ]
+      }
+    },
+    {
+      "id": "generate-premises@1",
+      "kind": "llm",
+      "purpose": "从胜出方向生成可持续的 Premise 候选",
+      "output_contract": {
+        "required": [
+          "candidates"
+        ]
+      }
+    },
+    {
+      "id": "evaluate-premises@1",
+      "kind": "llm-eval",
+      "purpose": "按 Premise 评分卡逐项评分并核验硬闸",
+      "output_contract": {
+        "required": [
+          "evaluations"
+        ]
+      }
+    },
+    {
+      "id": "generate-titles@1",
+      "kind": "llm",
+      "purpose": "生成与 Premise 和平台一致的标题候选",
+      "output_contract": {
+        "required": [
+          "candidates"
+        ]
+      }
+    },
+    {
+      "id": "evaluate-titles@1",
+      "kind": "llm-eval",
+      "purpose": "按标题评分卡逐项评分并核验硬闸",
+      "output_contract": {
+        "required": [
+          "evaluations"
+        ]
+      }
+    },
+    {
+      "id": "evaluate-selection-fit@1",
+      "kind": "llm-eval",
+      "purpose": "评价完整选题的平台与执行适配",
+      "output_contract": {
+        "required": [
+          "score",
+          "hard_gates"
+        ]
+      }
+    }
+  ]
+}

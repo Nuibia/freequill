@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "skill": "freequill-xuanti",
+  "deployment": "public-embedded-runtime",
+  "runtime": {
+    "embedded": true,
+    "entrypoint": "scripts/runtime.mjs",
+    "state_directory": "$FREEQUILL_HOME/.freequill/runtime-v2",
+    "default_user_home": "~/FreeQuill",
+    "default_works_directory": "我的作品",
+    "upgrade_preserves_existing_works": true
+  },
+  "entry_workflows": [
+    {
+      "workflow": "topic-direction@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "premise-selection@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "title-selection@2",
+      "standalone": true,
+      "nested": true
+    },
+    {
+      "workflow": "selection@2",
+      "standalone": true,
+      "nested": true
+    }
+  ]
+}

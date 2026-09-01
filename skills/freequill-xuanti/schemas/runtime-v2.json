@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "runtime_contract": "freequill-portable-runtime-v2",
+  "user_space": {
+    "default_home": "~/FreeQuill",
+    "works": "我的作品/",
+    "runtime": ".freequill/runtime-v2/"
+  },
+  "state_layout": [
+    "manifest.json",
+    "state.json",
+    "events.jsonl",
+    "artifacts/",
+    "trace/"
+  ],
+  "upgrade_invariant": "existing works are never rewritten by package installation or runtime initialization"
+}

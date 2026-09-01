@@ -1,0 +1,17 @@
+name: skill-smoke
+on:
+  push:
+  pull_request:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validate self-contained Skill runtime
+        run: node skills/freequill-xuanti/tests/smoke.mjs
+        env:
+          FREEQUILL_HOME: ${{ runner.temp }}/freequill-home

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "skills": [
+    {
+      "name": "freequill-xuanti",
+      "description": "开新书前的选题决策护栏：市场时效信号 × 写法可写性交叉决策，产出排序 premise 卡交用户拍板。",
+      "release": "R1",
+      "entry": "skills/freequill-xuanti/SKILL.md",
+      "files": [
+        "skills/freequill-xuanti/"
+      ]
+    }
+  ]
+}
