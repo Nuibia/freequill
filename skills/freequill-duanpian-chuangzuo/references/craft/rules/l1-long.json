@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "layer": "L1",
+  "form": "long",
+  "version": "1.0.0",
+  "rules": [
+    {
+      "rule_id": "CRAFT-L1-LONG-PLAN-001",
+      "applies_to": ["chapter-plan", "draft", "review"],
+      "triggers": ["章计划只有事件列表", "本章不改变任何状态", "章末钩子与本章无因果"],
+      "mechanism": "每章以目标、阻碍、主动选择、状态变化和章末问题构成最小推进单元，并明确承接哪些冻结事实。",
+      "procedure": ["列本章目标与阻碍", "写主角必须作出的选择", "声明本章结束时至少一项状态变化", "用本章因果生成章末钩子", "列连续性输入"],
+      "observable_results": ["章节结束后局势不可原样复位", "章末问题由本章行动产生"],
+      "misuse_signals": ["人物到场聊天后离开", "钩子突然出现陌生威胁", "计划未引用正史或当前状态"],
+      "priority": "hard-gate",
+      "conflicts": { "wins_over": ["L3 单章气氛优先"], "yields_to": ["冻结正史与当前状态"] },
+      "operator_refs": ["OP-LONG-CHAPTER-001"],
+      "template_refs": ["long-chapter-plan.template.json"],
+      "eval_refs": ["RUBRIC-LONG-PLAN-001"]
+    },
+    {
+      "rule_id": "CRAFT-L1-LONG-CANON-001",
+      "applies_to": ["chapter-plan", "draft", "revision", "materialize", "review"],
+      "triggers": ["正文改写已发生事实", "临场创意覆盖冻结设定", "人物凭空知道信息"],
+      "mechanism": "已冻结正史高于临场创意；新事实只能追加或显式变更可变项，并记录来源章节与冲突。",
+      "procedure": ["读取当前 canon revision", "列本章新增与变更事实", "核对人物知情边界", "发现冲突时阻塞而非自动改史", "新 revision 绑定正文哈希"],
+      "observable_results": ["每条新事实可追到章节", "冲突报告包含旧事实与新主张"],
+      "misuse_signals": ["用失忆或误记解释无前置冲突", "直接覆盖旧账", "知情变化未记录"],
+      "priority": "absolute",
+      "conflicts": { "wins_over": ["L2 与 L3 临场建议"], "yields_to": ["用户明确批准的正史修订"] },
+      "operator_refs": ["OP-LONG-CANON-001"],
+      "template_refs": ["canon-ledger.template.json", "continuity-update.template.json"],
+      "eval_refs": ["RUBRIC-LONG-PLAN-001", "RUBRIC-LONG-REVIEW-001"]
+    },
+    {
+      "rule_id": "CRAFT-L1-LONG-STATE-001",
+      "applies_to": ["chapter-plan", "draft", "materialize", "review"],
+      "triggers": ["物件位置跳变", "关系或能力无因变化", "章节快照与当前状态不一致"],
+      "mechanism": "状态机只保存影响后续逻辑的变量；每章以 before/after revision 和分类变化表完成可逆核对。",
+      "procedure": ["冻结 before state", "记录知识、关系、物件、事件与 flag 变化", "验证 after state revision 递增", "让 snapshot 同时绑定 body/canon/state 哈希"],
+      "observable_results": ["下一章可仅凭当前状态恢复关键变量", "物件、知情和关系变化均有动作来源"],
+      "misuse_signals": ["状态只写剧情摘要", "revision 不递增", "snapshot 哈希为空却签出"],
+      "priority": "absolute",
+      "conflicts": { "wins_over": ["方便剧情的变量跳变"], "yields_to": ["冻结正史"] },
+      "operator_refs": ["OP-LONG-STATE-001"],
+      "template_refs": ["current-state.template.json", "chapter-snapshot.template.json", "continuity-update.template.json"],
+      "eval_refs": ["RUBRIC-LONG-REVIEW-001"]
+    },
+    {
+      "rule_id": "CRAFT-L1-LONG-HOOK-001",
+      "applies_to": ["chapter-plan", "outline", "draft", "review"],
+      "triggers": ["伏笔只开不收", "回收没有前置锚点", "钩子与人物目标无关"],
+      "mechanism": "伏笔以开放、加压、转义、回收的生命周期管理；回收必须引用旧锚点并改变当前选择。",
+      "procedure": ["为新伏笔分配稳定 ID", "记录开放章节和可见锚点", "计划加压或回收窗口", "回收时引用旧锚点并更新状态", "过期未处理则报告"],
+      "observable_results": ["回收可回看且影响当前局势", "长期开放项有下一动作"],
+      "misuse_signals": ["结尾突然解释从未出现的秘密", "同一谜团反复提醒不升级", "回收后人物行动不变"],
+      "priority": "required",
+      "conflicts": { "wins_over": ["L3 临时惊奇"], "yields_to": ["正史与公平信息"] },
+      "operator_refs": ["OP-LONG-HOOK-001"],
+      "template_refs": ["canon-ledger.template.json", "long-chapter-plan.template.json"],
+      "eval_refs": ["RUBRIC-LONG-PLAN-001", "RUBRIC-LONG-REVIEW-001"]
+    },
+    {
+      "rule_id": "CRAFT-L1-LONG-CONTINUITY-001",
+      "applies_to": ["chapter-plan", "draft", "revision", "review"],
+      "triggers": ["跨章目标重置", "人物情绪无过渡", "旧代价下一章消失"],
+      "mechanism": "新章必须从上一快照的未完成目标、代价和关系状态起步，变化通过场景行动逐步发生。",
+      "procedure": ["读取上一章快照", "选择本章承接的未完成项", "让旧代价在本章产生阻力", "为情绪与关系变化安排过渡动作", "检查章首不可与上一章互换"],
+      "observable_results": ["章首状态能从上一章结尾推导", "旧代价继续影响选择"],
+      "misuse_signals": ["上一章受伤下一章无影响", "关系冲突自动恢复", "章节可任意调序"],
+      "priority": "hard-gate",
+      "conflicts": { "wins_over": ["L3 单章独立性"], "yields_to": ["冻结正史与状态"] },
+      "operator_refs": ["OP-LONG-CONTINUITY-001"],
+      "template_refs": ["chapter-snapshot.template.json", "long-chapter-plan.template.json"],
+      "eval_refs": ["RUBRIC-LONG-PLAN-001", "RUBRIC-LONG-REVIEW-001"]
+    },
+    {
+      "rule_id": "CRAFT-L1-LONG-DELIVERY-001",
+      "applies_to": ["review", "materialize"],
+      "triggers": ["正文先落盘后补账", "验稿后修改账或正文", "只写正文不更新连续性产物"],
+      "mechanism": "正文、候选正史、状态与快照先闭合并冻结哈希，再交隔离评审；通过后按同一组哈希共同签出。",
+      "procedure": ["生成正文与连续性候选", "计算四类哈希", "冻结评审输入", "隔离评审", "只在全绿时共同落盘", "任一内容变化使旧评审失效"],
+      "observable_results": ["交付回执含同批 body/canon/state/snapshot hash", "正文与账本 revision 一致"],
+      "misuse_signals": ["评审通过后正文哈希变化", "账本晚于正文补写", "快照引用旧 revision"],
+      "priority": "absolute",
+      "conflicts": { "wins_over": ["先发后补账"], "yields_to": ["无"] },
+      "operator_refs": ["OP-LONG-FREEZE-001"],
+      "template_refs": ["continuity-update.template.json"],
+      "eval_refs": ["RUBRIC-LONG-REVIEW-001"]
+    }
+  ]
+}

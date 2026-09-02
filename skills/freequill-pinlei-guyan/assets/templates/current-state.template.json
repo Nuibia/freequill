@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "artifact_type": "current-state",
+  "revision": 0,
+  "story_position": { "chapter": 0, "scene": 0 },
+  "character_knowledge": {},
+  "relationships": {},
+  "object_ownership": {},
+  "events": {},
+  "flags": {},
+  "invariants": [],
+  "canon_revision": 0
+}

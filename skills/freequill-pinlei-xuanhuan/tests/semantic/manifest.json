@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "suite_id": "freequill-r3.1-anonymous-semantic-v1",
+  "status": "development",
+  "sealed_holdout": false,
+  "maturity_eligible": false,
+  "protocol": "protocol.md",
+  "protocol_sha256": "7dc843836154805bc047302a3daec22b1c2d14992bdcce3d3ff0b62f0c9cfe23",
+  "cases": [
+    { "blind_input_id": "FQ001", "path": "blind-inputs/FQ001.json", "sha256": "c7e625fa2ff8ccc58851e1a99e34cc1047d7f5a03d6e42990c23a2859a6de0b7" },
+    { "blind_input_id": "FQ002", "path": "blind-inputs/FQ002.json", "sha256": "efd16887bc7e25a3f51ba50a76171f3aa456d2c4e3f879112e8f70940e2b4ed2" },
+    { "blind_input_id": "FQ003", "path": "blind-inputs/FQ003.json", "sha256": "23741e1aa4ab254ab79d330dfbf58b7bb6a5a0c69b730d1b2f98c5ccf12e2bc3" },
+    { "blind_input_id": "FQ004", "path": "blind-inputs/FQ004.json", "sha256": "1dcb7769d860567d09b57274f0d80eefa45b554ab507ea63747332c8b8db0119" },
+    {
+      "blind_input_id": "FQ005",
+      "path": "blind-inputs/FQ005.json",
+      "sha256_parts": ["2c116db1", "0ddf369c", "27b4fc07", "d1aa1f1e", "19226297", "5315b322", "59ea4901", "c4b5976f"]
+    },
+    { "blind_input_id": "FQ006", "path": "blind-inputs/FQ006.json", "sha256": "f49377ddc293905bcee8887207d3cd72b2d2de650f4c0b793f90f548c391e2ef" },
+    { "blind_input_id": "FQ007", "path": "blind-inputs/FQ007.json", "sha256": "8d0523346004b927f357a47826a57229560d1bb7d5cfba8164c8b1ecbf9e1c37" }
+  ]
+}

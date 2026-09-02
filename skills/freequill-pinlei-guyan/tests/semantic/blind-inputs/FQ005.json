@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "blind_input_id": "FQ005",
+  "contract": {
+    "form": "short",
+    "genre": "dushi-naodong",
+    "stage": "investigation",
+    "core_mechanism": "主角只能从本人参与的维修单中读取异常标记。",
+    "chapter_goal": "在现实权限内取得足以推动下一步的证据。"
+  },
+  "body": "凌晨两点，陆衡在家打开内部系统，直接调出了集团过去十年的全部维修记录。他没有值班权限，也不认识系统管理员，但页面没有要求验证身份。几分钟后，他下载了所有员工的签名和监控备份，又把截图发给媒体。第二天调查组据此认定副总有罪，案件就此定案。"
+}

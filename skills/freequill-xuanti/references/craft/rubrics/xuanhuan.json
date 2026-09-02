@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rubric_id": "RUBRIC-XUANHUAN-001",
+  "version": "1.0.0",
+  "genre": "xuanhuan",
+  "dimensions": [
+    { "id": "core-emotion", "rule_refs": ["CRAFT-L2-XUANHUAN-EMOTION-001"], "pass": "成长通过主动破局转成能力、身份或选择权兑现" },
+    { "id": "sustainable-engine", "rule_refs": ["CRAFT-L2-XUANHUAN-ENGINE-001"], "pass": "目标、成长用途与下一轮压力形成因果链" },
+    { "id": "power-system", "rule_refs": ["CRAFT-L2-XUANHUAN-POWER-001"], "pass": "力量主轴可记忆，限制实际改变方案" },
+    { "id": "world-rules", "rule_refs": ["CRAFT-L2-XUANHUAN-WORLD-001"], "pass": "规则通过行动限制和后果显形且前后一致" },
+    { "id": "opponent", "rule_refs": ["CRAFT-L2-XUANHUAN-OPPONENT-001"], "pass": "对手目标、资源和学习能力随层级成立" },
+    { "id": "continuity", "rule_refs": ["CRAFT-L2-XUANHUAN-CONTINUITY-001"], "pass": "新区域带来新规则且推进旧关系、资源或伏笔" }
+  ],
+  "hard_red_lines": ["成长长期没有优越兑现", "无限制能力替主角解题", "靠主角或对手降智推进", "世界规则随剧情方便改变", "换地图清空关系与伏笔", "用大段设定说明替代行动"]
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifact_type": "long-chapter-plan",
+  "chapter_number": 1,
+  "base_canon_revision": 0,
+  "base_state_revision": 0,
+  "continuity_inputs": { "open_goals": [], "carried_costs": [], "relationship_baseline": [], "object_positions": [], "open_hooks": [] },
+  "goal": "",
+  "obstacle": "",
+  "active_choice": "",
+  "turn": "",
+  "state_delta_preview": [],
+  "hook_actions": [],
+  "ending_hook": "",
+  "conflicts": []
+}

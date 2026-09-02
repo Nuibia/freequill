@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "rubric_id": "RUBRIC-DUSHI-001",
+  "version": "1.0.0",
+  "genre": "dushi-naodong",
+  "dimensions": [
+    { "id": "core-emotion", "rule_refs": ["CRAFT-L2-DUSHI-EMOTION-001"], "pass": "压制、主动反击和现实反馈闭环" },
+    { "id": "sustainable-engine", "rule_refs": ["CRAFT-L2-DUSHI-ENGINE-001"], "pass": "至少三轮用途、限制或对手策略发生升级" },
+    { "id": "power-boundary", "rule_refs": ["CRAFT-L2-DUSHI-POWER-001"], "pass": "能力限制实际改变方案，主角承担能力无法代付的代价" },
+    { "id": "opponent", "rule_refs": ["CRAFT-L2-DUSHI-OPPONENT-001"], "pass": "对手依据目标、资源与已知反馈换招" },
+    { "id": "reality", "rule_refs": ["CRAFT-L2-DUSHI-REALITY-001"], "pass": "关键证据、职业动作、时间与利益链可信" }
+  ],
+  "hard_red_lines": ["能力一步完成全部主线", "只压不反击", "靠主角或对手降智推进", "反击后没有人物与现实反馈", "关键证据无可信权限链"]
+}

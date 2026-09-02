@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "layer": "L2",
+  "genre": "dushi-naodong",
+  "version": "1.0.0",
+  "core_emotion": "期待经过具体压制后，转化为快速、清晰并带现实反馈的爽快感。",
+  "story_engine": "信息差或能力差驱动目标—阻碍—反击—反馈循环，每次循环升级限制、对手策略或现实代价。",
+  "rules": [
+    {
+      "rule_id": "CRAFT-L2-DUSHI-EMOTION-001",
+      "applies_to": ["story-engine", "outline", "draft", "review"],
+      "triggers": ["只压不爆", "反击没有现实反馈", "爽点只有口头震惊"],
+      "mechanism": "压制建立期待，主动反击兑现能力，反馈把胜利转成关系、资源、地位或对手行动的变化。",
+      "procedure": ["明确本轮具体压制", "让主角使用已知规则主动反击", "写出至少一种现实反馈", "用升级后的阻碍开启下一轮"],
+      "observable_results": ["每轮反击后局势发生可追踪变化", "期待与反馈间隔不过度拖延"],
+      "misuse_signals": ["连续受辱无反击", "旁观者齐声震惊", "胜利后回到原点"],
+      "priority": "genre-core",
+      "conflicts": { "wins_over": ["L3 慢热偏好"], "yields_to": ["L1 因果与人物能动性"] },
+      "operator_refs": ["OP-DUSHI-PAYOFF-001", "OP-PACE-001"],
+      "template_refs": ["story-engine.template.json", "short-outline.template.json"],
+      "eval_refs": ["RUBRIC-DUSHI-001"]
+    },
+    {
+      "rule_id": "CRAFT-L2-DUSHI-ENGINE-001",
+      "applies_to": ["premise", "story-engine", "outline", "review"],
+      "triggers": ["能力只在开头用一次", "每轮冲突同构", "设定不给选择只给答案"],
+      "mechanism": "可持续引擎让能力带来新信息和新选择，同时暴露限制并促使对手换招。",
+      "procedure": ["列出能力输入、输出、限制和代价", "设计至少三轮不同用途", "每轮让对手根据上一轮反馈调整策略"],
+      "observable_results": ["能力使用方式升级而非数值重复", "对手会学习并施加新约束"],
+      "misuse_signals": ["换人换地点重复打脸", "能力自动给完整答案", "对手永远不适应"],
+      "priority": "hard-gate",
+      "conflicts": { "wins_over": ["L3 单次奇观"], "yields_to": ["L1 核心设定因果发动机"] },
+      "operator_refs": ["OP-HOOK-001", "OP-DUSHI-ESCALATION-001"],
+      "template_refs": ["story-engine.template.json"],
+      "eval_refs": ["RUBRIC-DUSHI-001", "RUBRIC-SHORT-PLAN-001"]
+    },
+    {
+      "rule_id": "CRAFT-L2-DUSHI-POWER-001",
+      "applies_to": ["story-engine", "outline", "draft", "review"],
+      "triggers": ["能力无边界", "代价可忽略", "能力替主角作决定"],
+      "mechanism": "明确限制和代价，让能力提供条件而非替代判断，才能保留压力与成长。",
+      "procedure": ["写清能力不能做什么", "为关键使用设置资源、时间、认知或关系代价", "把最终选择留给主角"],
+      "observable_results": ["至少一次因限制改变方案", "主角承担能力无法代付的代价"],
+      "misuse_signals": ["临场解锁刚好所需功能", "代价立刻返还", "主角只按提示执行"],
+      "priority": "hard-gate",
+      "conflicts": { "wins_over": ["L3 无限制强者设定"], "yields_to": ["L1 主角能动性"] },
+      "operator_refs": ["OP-DUSHI-LIMIT-001", "OP-CHAR-001"],
+      "template_refs": ["book-policy.template.json", "story-engine.template.json"],
+      "eval_refs": ["RUBRIC-DUSHI-001"]
+    },
+    {
+      "rule_id": "CRAFT-L2-DUSHI-OPPONENT-001",
+      "applies_to": ["outline", "draft", "review"],
+      "triggers": ["对手靠降智输", "反派只会重复挑衅", "高潮突然停止反制"],
+      "mechanism": "对手有自洽目标、资源和学习能力，主角的胜利才显得有效。",
+      "procedure": ["写明对手目标和可用资源", "让对手根据公开反馈换招", "高潮保留一次合理二次反制"],
+      "observable_results": ["对手行为服务自身利益", "反击针对主角上一轮真实弱点"],
+      "misuse_signals": ["为送爽点泄露底牌", "所有对手同一种嘴脸", "关键时刻忘记可用资源"],
+      "priority": "required",
+      "conflicts": { "wins_over": ["快速送人头"], "yields_to": ["L1 因果与常识"] },
+      "operator_refs": ["OP-DUSHI-COUNTER-001", "OP-CLIMAX-001"],
+      "template_refs": ["story-bible.template.json", "short-outline.template.json"],
+      "eval_refs": ["RUBRIC-DUSHI-001"]
+    },
+    {
+      "rule_id": "CRAFT-L2-DUSHI-REALITY-001",
+      "applies_to": ["outline", "draft", "review"],
+      "triggers": ["现实职业或商业流程只作皮肤", "证据权限不成立", "数值和社会反馈悬空"],
+      "mechanism": "都市脑洞的奇异设定必须落在可识别的现实规则、权限、时间和利益链上。",
+      "procedure": ["确认谁能看到证据以及凭什么", "核对职业动作、时间与数值量级", "让超常能力与现实制度发生摩擦"],
+      "observable_results": ["关键证据有合法或可信获取链", "胜负结果产生现实层面的后果"],
+      "misuse_signals": ["无权限查看内部材料", "万能会议或万能合同", "行业角色只负责宣布主角正确"],
+      "priority": "hard-gate",
+      "conflicts": { "wins_over": ["方便剧情"], "yields_to": ["可验证事实"] },
+      "operator_refs": ["OP-DUSHI-REALITY-001"],
+      "template_refs": ["story-bible.template.json", "current-state.template.json"],
+      "eval_refs": ["RUBRIC-DUSHI-001", "RUBRIC-SHORT-REVIEW-001"]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "version": "1.0.0",
+  "genre": "dushi-naodong",
+  "operators": [
+    {
+      "operator_id": "OP-DUSHI-PAYOFF-001",
+      "source_rules": ["CRAFT-L2-DUSHI-EMOTION-001"],
+      "stage": ["story-engine", "outline", "revision"],
+      "triggers": ["只压不爆", "反馈悬空"],
+      "mechanism": "把压制、主动反击和现实反馈绑成不可拆的回报单元。",
+      "procedure": ["列具体压制", "选择规则内反击", "让关系、资源、地位或对手策略变化"],
+      "output_contract": ["suppression", "active_counter", "material_feedback", "next_escalation"],
+      "success_signals": ["爽点改变下一轮条件"],
+      "misuse_signals": ["只有口头震惊"],
+      "validation": { "status": "compiled", "evidence": null }
+    },
+    {
+      "operator_id": "OP-DUSHI-ESCALATION-001",
+      "source_rules": ["CRAFT-L2-DUSHI-ENGINE-001"],
+      "stage": ["story-engine", "outline"],
+      "triggers": ["能力用途重复", "冲突换皮"],
+      "mechanism": "每轮升级能力用途、限制暴露和对手学习中的至少两项。",
+      "procedure": ["设计三轮不同用途", "记录每轮暴露的限制", "让对手依据上一轮结果换招"],
+      "output_contract": ["rounds", "usage_changes", "exposed_limits", "opponent_learning"],
+      "success_signals": ["三轮不可互换"],
+      "misuse_signals": ["只增大数值"],
+      "validation": { "status": "compiled", "evidence": null }
+    },
+    {
+      "operator_id": "OP-DUSHI-LIMIT-001",
+      "source_rules": ["CRAFT-L2-DUSHI-POWER-001"],
+      "stage": ["premise", "story-engine", "climax"],
+      "triggers": ["能力无边界", "代价可忽略"],
+      "mechanism": "限制迫使主角选择，代价让胜利具有重量。",
+      "procedure": ["写能力不能做什么", "设置资源、时间、认知或关系代价", "设计一次限制导致的改案"],
+      "output_contract": ["cannot_do", "costs", "forced_replan", "human_choice"],
+      "success_signals": ["限制实际改变方案"],
+      "misuse_signals": ["临场解锁新功能"],
+      "validation": { "status": "compiled", "evidence": null }
+    },
+    {
+      "operator_id": "OP-DUSHI-COUNTER-001",
+      "source_rules": ["CRAFT-L2-DUSHI-OPPONENT-001"],
+      "stage": ["outline", "climax", "revision"],
+      "triggers": ["对手降智", "反制重复"],
+      "mechanism": "对手依据自身利益和已知反馈采取针对性反制。",
+      "procedure": ["列目标、资源和已知信息", "针对主角上一轮暴露弱点换招", "在高潮保留二次反制"],
+      "output_contract": ["opponent_goal", "resources", "known_facts", "adaptive_move", "second_counter"],
+      "success_signals": ["对手行动对自身合理"],
+      "misuse_signals": ["为送爽泄露底牌"],
+      "validation": { "status": "compiled", "evidence": null }
+    },
+    {
+      "operator_id": "OP-DUSHI-REALITY-001",
+      "source_rules": ["CRAFT-L2-DUSHI-REALITY-001"],
+      "stage": ["outline", "scene", "review"],
+      "triggers": ["权限不成立", "行业流程悬空", "数值失真"],
+      "mechanism": "让超常设定与具体权限、时间、利益和制度发生可信摩擦。",
+      "procedure": ["回答谁能看到、何时看到、凭什么看到", "核对职业动作与量级", "写出制度对能力的真实阻力"],
+      "output_contract": ["access_chain", "timeline", "professional_actions", "scale_check", "institutional_friction"],
+      "success_signals": ["证据和胜负有可信现实链"],
+      "misuse_signals": ["万能会议、万能合同或万能内部数据"],
+      "validation": { "status": "compiled", "evidence": null }
+    }
+  ]
+}

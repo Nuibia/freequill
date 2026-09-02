@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "suite_id": "freequill-r3.3-anonymous-long-semantic-v1",
+  "status": "development",
+  "sealed_holdout": false,
+  "maturity_eligible": false,
+  "protocol": "protocol.md",
+  "protocol_sha256": "5bb3f7f753f5ecb707d4c72ac42acd5e343c7fee81a80038acdbc6ff27b0306b",
+  "cases": [
+    { "blind_input_id": "LQ001", "path": "blind-inputs/LQ001.json", "sha256": "38b8ec9ca1e4bcff3a4044808101a8fcffc9eefac86af3419f22eb7515a735f4" },
+    { "blind_input_id": "LQ002", "path": "blind-inputs/LQ002.json", "sha256": "62ddaad8e9b00c001e6e6314fcba0455a3fc872e1496b9c7f4ed28342209ee61" },
+    { "blind_input_id": "LQ003", "path": "blind-inputs/LQ003.json", "sha256": "a7cf155863cb47899e28826990af56df68645f968b581089157a4a78eaa6d275" },
+    { "blind_input_id": "LQ004", "path": "blind-inputs/LQ004.json", "sha256": "7ac896629675410581983484e100e860642cc5ffa68c203d4da0f9f5df19dd50" }
+  ]
+}

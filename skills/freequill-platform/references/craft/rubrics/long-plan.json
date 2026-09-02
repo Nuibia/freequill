@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "rubric_id": "RUBRIC-LONG-PLAN-001",
+  "version": "1.0.0",
+  "form": "long",
+  "dimensions": [
+    { "id": "chapter-unit", "rule_refs": ["CRAFT-L1-LONG-PLAN-001"], "pass": "目标、阻碍、选择、状态变化和因果钩子齐全" },
+    { "id": "canon-input", "rule_refs": ["CRAFT-L1-LONG-CANON-001"], "pass": "计划引用当前 canon revision 且不改写冻结事实" },
+    { "id": "hook-lifecycle", "rule_refs": ["CRAFT-L1-LONG-HOOK-001"], "pass": "新开或回收的伏笔有稳定 ID、旧锚点和下一动作" },
+    { "id": "cross-chapter", "rule_refs": ["CRAFT-L1-LONG-CONTINUITY-001"], "pass": "承接上一快照的未完成目标、代价和关系状态" }
+  ],
+  "hard_red_lines": ["计划改写冻结正史", "章节结束后状态完全复位", "钩子无本章因果或回收无旧锚点", "忽略上一章仍生效的代价"]
+}

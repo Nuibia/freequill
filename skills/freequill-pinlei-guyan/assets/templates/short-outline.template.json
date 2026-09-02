@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "artifact_type": "short-outline",
+  "mainline": null,
+  "opening_screen": { "protagonist": null, "pressure": null, "short_goal": null, "premise": null, "conflict": null, "hook": null },
+  "stages": [],
+  "turn": { "surface_belief": null, "hidden_fact": null, "fair_anchors": [], "changed_action": null },
+  "climax": { "pressure": null, "judgment": null, "choice": null, "execution": null, "countermove": null, "cost": null, "result": null, "echo": null },
+  "ending": { "conflict_closure": null, "relationship_closure": null, "cost_closure": null, "echo_object": null }
+}

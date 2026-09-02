@@ -20,7 +20,8 @@ import {
   withRunLock,
 } from './storage.mjs';
 import { getWorkflow, listWorkflows } from '../registry.mjs';
-import { resolveCapability, validatePolicyRefs } from '../capability-registry.mjs';
+import { resolveCapability, validateCapabilityInput, validatePolicyRefs } from '../capability-registry.mjs';
+import { composeActionContext } from '../context-composer.mjs';
 
 const TERMINAL = new Set(['completed', 'blocked', 'failed']);
 const ACTION_STATUS = new Set(['completed', 'blocked']);
@@ -188,7 +189,16 @@ function drive(root, paths, manifest, state) {
     if (step.kind === 'capability') {
       capabilityContract = resolveCapability(root, step.capability);
       validatePolicyRefs(root, step.policyRefs);
+      const missingInput = validateCapabilityInput(capabilityContract, step.input);
+      if (missingInput.length) {
+        state.status = 'needs_input';
+        state.needs_input = { instance_id: instance.instance_id, node_id: step.id, required: missingInput, reason: `Capability 输入缺字段：${missingInput.join(', ')}` };
+        break;
+      }
     }
+    const contextBundle = step.kind === 'capability' ? composeActionContext({ root, capabilityContract, input: step.input, policyRefs: step.policyRefs }) : null;
+    if (contextBundle?.status === 'needs_input') { state.status = 'needs_input'; state.needs_input = { instance_id: instance.instance_id, node_id: step.id, ...contextBundle }; break; }
+    if (contextBundle?.status === 'blocked') { blockState(state, contextBundle.reason, contextBundle.details ?? null); break; }
     state.pending_action = {
       action_id: `a-${crypto.randomBytes(8).toString('hex')}`,
       action_type: step.kind,
@@ -198,6 +208,7 @@ function drive(root, paths, manifest, state) {
       node_id: step.id,
       capability: step.capability ?? null,
       capability_contract: capabilityContract,
+      context_bundle: contextBundle,
       input: step.input,
       policy_refs: step.policyRefs,
       required_output_artifact_type: step.outputArtifactType ?? null,
@@ -386,6 +397,9 @@ export function submitRun({ root = process.cwd(), stateDir = null, runId, action
         if (manifest.requested_by?.agent_id && executor.agent_id === manifest.requested_by.agent_id) {
           throw new Error('关键 Eval 不允许由发起 Agent 自评通过');
         }
+        if (action.isolation?.cold_read === true && executor.cold_read_frozen_before_context !== true) {
+          throw new Error('冷读 Eval 必须证明先冻结正文复述再读取 Context');
+        }
       }
       const instance = state.instances[action.instance_id];
       let artifactRef = null;
@@ -399,12 +413,13 @@ export function submitRun({ root = process.cwd(), stateDir = null, runId, action
           capability: action.capability,
           executor: result.executor ?? null,
         },
-        metadata: { evidence_refs: evidenceRefs },
+        metadata: { evidence_refs: evidenceRefs, context_bundle_sha256: action.context_bundle?.integrity?.canonical_sha256 ?? null },
       }).ref;
       const execution = {
         executor: result.executor ?? null,
         telemetry: result.telemetry ?? null,
         evidence_refs: evidenceRefs,
+        context_bundle_sha256: action.context_bundle?.integrity?.canonical_sha256 ?? null,
       };
       applyNodeResult(instance, action.node_id, result.output, artifactRef, execution);
       state.pending_action = null;

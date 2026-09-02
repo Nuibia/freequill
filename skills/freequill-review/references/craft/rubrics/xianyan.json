@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rubric_id": "RUBRIC-XIANYAN-001",
+  "version": "1.0.0",
+  "genre": "xianyan",
+  "dimensions": [
+    { "id": "primary-emotion", "rule_refs": ["CRAFT-L2-XIANYAN-EMOTION-001"], "pass": "甜、虐或爽有唯一主情绪，开篇至结尾回报一致" },
+    { "id": "information-engine", "rule_refs": ["CRAFT-L2-XIANYAN-INFO-001"], "pass": "每次信息释放改变行动或关系权限并有公平锚点" },
+    { "id": "female-agency", "rule_refs": ["CRAFT-L2-XIANYAN-AGENCY-001"], "pass": "女主有独立目标、关键行动和自身边界" },
+    { "id": "relationship-evidence", "rule_refs": ["CRAFT-L2-XIANYAN-RELATION-001"], "pass": "吸引、伤害和修复均有双向行动与代价凭证" },
+    { "id": "profession", "rule_refs": ["CRAFT-L2-XIANYAN-PROFESSION-001"], "pass": "职业任务、权限、技能和后果真实参与主线" },
+    { "id": "subtype", "rule_refs": ["CRAFT-L2-XIANYAN-SUBTYPE-001"], "pass": "子类型限制改变行动；跨单元时目标和状态连续" }
+  ],
+  "hard_red_lines": ["女主失去主体性或靠伴侣完成全部成长", "甜虐爽混杂导致回报承诺失焦", "用重复误会替代人物行动", "核心信息过早耗尽且无新关系状态", "羞辱女性被包装成吸引力", "职业或子类型仅作装饰"]
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "blind_input_id": "LQ001",
+  "contract": { "genre": "dushi-naodong", "chapter_number": 8, "prior_canon": ["第7章末，林遇左脚扭伤", "旧门卡仍由林遇持有", "H3：门卡背面的蓝点来源未知"], "prior_state": { "state_revision": 7, "canon_revision": 7, "injury": "left-ankle-sprain", "card_owner": "林遇", "open_hooks": ["H3"] }, "chapter_goal": "承接伤势与门卡伏笔，取得一条可验证线索。" },
+  "body": "林遇下楼时左脚不敢落满，扶着栏杆停了两次。旧门卡还在他胸前口袋里，背面的蓝点被汗水洇开，露出半枚仓库编号。他没有直接闯门，先让值班员核对编号，再用自己的登记记录换来一次现场复核。门开后，空货架底下压着同色记号笔。在值班员见证下，他拍下门卡编号；值班员把记号笔装入证据袋并封签，随后收回临时权限。林遇也因超时复核被记了一次警告，H3 的来源缩小到夜班仓库。",
+  "continuity": { "canon_revision": 8, "state_revision": 8, "before_state_revision": 7, "after_state_revision": 8, "facts_added": ["蓝点覆盖半枚仓库编号", "仓库发现同色记号笔"], "object_changes": ["旧门卡仍由林遇持有"], "hooks_opened": [], "hooks_closed": [], "hooks_updated": ["H3:来源缩小到夜班仓库"] }
+}

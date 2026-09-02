@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "blind_input_id": "LQ004",
+  "contract": { "genre": "xianyan", "chapter_number": 15, "prior_canon": ["H4：周屿在旧处方角落发现反复出现的三角记号", "林澄尚不知道记号含义"], "prior_state": { "state_revision": 14, "canon_revision": 14, "open_hooks": ["H4"], "relationship": "林澄与周屿因处方争执后暂时分工" }, "chapter_goal": "推进旧处方钩子并让关系因行动发生变化。" },
+  "body": "林澄收到一封匿名邮件，附件直接写明院长十年前调换过所有病历。她没有核验发件人，也没再看旧处方上的三角记号，立刻把邮件转给媒体。周屿看见后说自己完全相信她，两人此前的争执就此消失。院长当晚辞职，医院恢复平静。林澄删掉邮件，觉得所有谜团都已经结束。",
+  "continuity": { "canon_revision": 15, "state_revision": 15, "before_state_revision": 14, "after_state_revision": 15, "facts_added": ["院长十年前调换全部病历"], "hooks_closed": [], "hooks_removed": ["H4"], "relationship_changes": ["争执状态直接恢复为完全信任"], "conflicts": [] }
+}

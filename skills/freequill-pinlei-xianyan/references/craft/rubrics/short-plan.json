@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "rubric_id": "RUBRIC-SHORT-PLAN-001",
+  "version": "1.0.0",
+  "applies_to": ["story-engine", "short-outline"],
+  "verdicts": ["PASS", "REBUILD_OUTLINE", "REJECT_TOPIC"],
+  "hard_gates": [
+    { "id": "premise-engine", "rule_refs": ["CRAFT-L1-PREMISE-001"], "pass": "核心设定在开头、中段、终局均不可替代" },
+    { "id": "agency", "rule_refs": ["CRAFT-L1-CHARACTER-001"], "pass": "主角主动选择并承担真实代价" },
+    { "id": "causal-stages", "rule_refs": ["CRAFT-L1-OUTLINE-001"], "pass": "每阶段有因果闭环和不可逆变化" },
+    { "id": "climax", "rule_refs": ["CRAFT-L1-CLIMAX-001"], "pass": "高潮使用已建立资源并承受二次反制" },
+    { "id": "closure", "rule_refs": ["CRAFT-L1-END-001"], "pass": "核心冲突、关系与代价可闭合" }
+  ],
+  "decision": {
+    "PASS": "全部 hard gate 通过",
+    "REBUILD_OUTLINE": "题目可写，但一个或多个结构 gate 未通过",
+    "REJECT_TOPIC": "多条候选引擎均无法让核心卖点成为因果发动机"
+  }
+}
