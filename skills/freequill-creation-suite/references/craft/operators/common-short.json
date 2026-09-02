@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "version": "1.0.0",
+  "operators": [
+    {
+      "operator_id": "OP-HOOK-001",
+      "source_rules": ["CRAFT-L1-PREMISE-001"],
+      "stage": ["premise", "story-engine", "outline"],
+      "triggers": ["卖点只在开头出现", "移除设定后主线不变"],
+      "mechanism": "用反事实替换证明核心卖点持续改写选择和后果。",
+      "procedure": ["生成只给答案与改变选择两条路线", "对开头、中段、高潮分别移除卖点", "拒绝仍可照常成立的路线"],
+      "output_contract": ["two_routes", "rejected_route", "three_stage_irreplaceability"],
+      "success_signals": ["卖点每次出现都产生新代价"],
+      "misuse_signals": ["表格只重复标题"],
+      "validation": { "status": "applied", "evidence": "private-anonymous-production-review" }
+    },
+    {
+      "operator_id": "OP-CHAR-001",
+      "source_rules": ["CRAFT-L1-CHARACTER-001"],
+      "stage": ["story-engine", "outline", "scene", "revision"],
+      "triggers": ["人物标签化", "外力代打", "选择无代价"],
+      "mechanism": "以欲望和恐惧冲突下的选择暴露人物本性。",
+      "procedure": ["生成保全自己、关系、原则三种选择", "写清即时代价", "选择最能推进因果的一版"],
+      "output_contract": ["choice_forks", "selected_choice", "immediate_cost", "state_change"],
+      "success_signals": ["删掉标签仍能辨认人物"],
+      "misuse_signals": ["人物先宣言再执行"],
+      "validation": { "status": "applied", "evidence": "private-anonymous-production-review" }
+    },
+    {
+      "operator_id": "OP-PACE-001",
+      "source_rules": ["CRAFT-L1-OUTLINE-001", "CRAFT-L1-PACE-001"],
+      "stage": ["outline", "revision"],
+      "triggers": ["中段平", "回报后归零", "任务轮换"],
+      "mechanism": "让每次回报改变下一轮可用资源、关系、地位或对手策略。",
+      "procedure": ["填写目标、回报、变化、可解危机和下一期待", "比较只给奖励与迫使局势回应两版", "保留不可逆变化版"],
+      "output_contract": ["stage_goal", "emotional_payoff", "irreversible_change", "solvable_pressure", "next_expectation"],
+      "success_signals": ["阶段不可任意互换"],
+      "misuse_signals": ["只有所有人震惊"],
+      "validation": { "status": "applied", "evidence": "private-anonymous-production-review" }
+    },
+    {
+      "operator_id": "OP-SCENE-001",
+      "source_rules": ["CRAFT-L1-SCENE-001", "CRAFT-L1-REVISION-001", "CRAFT-L1-CONTINUITY-001"],
+      "stage": ["scene", "draft", "revision"],
+      "triggers": ["规则说明书", "证据清单", "重复解释"],
+      "mechanism": "把信息翻译为行动受阻、物件变位、对手换招或关系压力。",
+      "procedure": ["限制本场必须理解的信息", "生成解释版与后果版", "只保留产生现场变化的表达"],
+      "output_contract": ["information_to_action_map", "scene_anchor", "forbidden_repetition"],
+      "success_signals": ["读者从后果理解规则"],
+      "misuse_signals": ["每个物件对应一项验稿要求"],
+      "validation": { "status": "applied", "evidence": "private-anonymous-production-review" }
+    },
+    {
+      "operator_id": "OP-TURN-001",
+      "source_rules": ["CRAFT-L1-TURN-001", "CRAFT-L1-HOOK-001", "CRAFT-L1-CONTINUITY-001"],
+      "stage": ["outline", "revision"],
+      "triggers": ["反转只改解释", "揭示后行动不变"],
+      "mechanism": "公平锚点后的揭示必须迫使人物改目标、同盟、资源或代价。",
+      "procedure": ["列出表层认知与隐藏事实", "生成只改解释版和行动改轨版", "提前埋锚点并保留改轨版"],
+      "output_contract": ["surface_belief", "hidden_fact", "fair_anchors", "changed_action", "new_consequence"],
+      "success_signals": ["下一场无法按原计划继续"],
+      "misuse_signals": ["临时新人或新证据解谜"],
+      "validation": { "status": "compiled", "evidence": null }
+    },
+    {
+      "operator_id": "OP-CLIMAX-001",
+      "source_rules": ["CRAFT-L1-CLIMAX-001", "CRAFT-L1-CHARACTER-001"],
+      "stage": ["outline", "climax", "revision"],
+      "triggers": ["外援代打", "对手停止反制", "胜利无代价"],
+      "mechanism": "让承诺、主角能力、关系和旧代价在同一主动行动链合流。",
+      "procedure": ["生成外力版与主角主动版", "两版都加入对手二次反制", "主动版使用旧资源并承担不可逆代价"],
+      "output_contract": ["pressure", "judgment", "choice", "execution", "countermove", "cost", "result", "echo"],
+      "success_signals": ["高潮只能由这个主角完成"],
+      "misuse_signals": ["临场新能力", "可立即恢复的假代价"],
+      "validation": { "status": "compiled", "evidence": null }
+    },
+    {
+      "operator_id": "OP-REL-001",
+      "source_rules": ["CRAFT-L1-RELATIONSHIP-001", "CRAFT-L1-DIALOGUE-001"],
+      "stage": ["outline", "relationship", "revision"],
+      "triggers": ["关系只靠表白", "单向牺牲", "权限没有改变"],
+      "mechanism": "双方用有代价的行动凭证改变信任、秘密、资源或公开站位。",
+      "procedure": ["双方各生成三种选择", "比较口头和解与行动凭证", "留下未被温情抹平的现实残余"],
+      "output_contract": ["prior_misread", "action_a", "cost_a", "action_b", "cost_b", "public_change", "private_permission", "residue"],
+      "success_signals": ["不用关系命名也能读出阶段"],
+      "misuse_signals": ["一句解释清空旧伤"],
+      "validation": { "status": "compiled", "evidence": null }
+    },
+    {
+      "operator_id": "OP-END-001",
+      "source_rules": ["CRAFT-L1-END-001"],
+      "stage": ["outline", "ending", "revision"],
+      "triggers": ["结尾解释主题", "人物排队汇报", "代价清零"],
+      "mechanism": "用前文物件或惯常动作的新含义承载冲突、关系和代价的回收。",
+      "procedure": ["核对三条闭合线", "生成解释版与物件回声版", "删除道理句并检查主题可读性"],
+      "output_contract": ["conflict_closure", "relationship_closure", "cost_closure", "prior_anchor", "echo_object", "final_choice"],
+      "success_signals": ["开头意象在结尾含义改变"],
+      "misuse_signals": ["承重物结尾首次出现"],
+      "validation": { "status": "compiled", "evidence": null }
+    }
+  ]
+}

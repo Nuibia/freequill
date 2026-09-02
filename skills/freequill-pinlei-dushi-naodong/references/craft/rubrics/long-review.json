@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "rubric_id": "RUBRIC-LONG-REVIEW-001",
+  "version": "1.0.0",
+  "form": "long",
+  "dimensions": [
+    { "id": "canon", "rule_refs": ["CRAFT-L1-LONG-CANON-001"], "pass": "正文与候选正史不冲突，知情变化有来源" },
+    { "id": "state", "rule_refs": ["CRAFT-L1-LONG-STATE-001"], "pass": "知识、关系、物件、事件和 flag 变化可由正文复核" },
+    { "id": "hooks", "rule_refs": ["CRAFT-L1-LONG-HOOK-001"], "pass": "伏笔生命周期可回看且影响选择" },
+    { "id": "continuity", "rule_refs": ["CRAFT-L1-LONG-CONTINUITY-001"], "pass": "章首承接上一状态，旧代价和关系变化未重置" },
+    { "id": "delivery", "rule_refs": ["CRAFT-L1-LONG-DELIVERY-001"], "pass": "正文、正史、状态和快照属于同一冻结批次" }
+  ],
+  "hard_red_lines": ["改写冻结正史", "人物凭空获知信息", "物件、能力或关系无因跳变", "正文与连续性候选哈希不一致", "隔离评审后修改正文或账本"]
+}

@@ -22,4 +22,6 @@ description: 用户安装 FreeQuill 后直接要求写短故事、完成整套�
 
 Fast 不是取消质量门：所有关键 Eval 和五路验稿仍必须隔离。没有隔离执行者时阻塞，不用发起 Agent 冒充自评。
 
+Runtime 会按 Capability contract 自动编译 `action.context_bundle`。Host 只使用 bundle 中的 L1 公共规则、L2 品类规则和用户作品内 L3；缺层或层级冲突时停止，不自行补写规则。Scaffold 会先生成并冻结本地 L3，后续写作持续读取它。
+
 作品默认落在 `~/FreeQuill/我的作品/`。只生成本地内容和物料，不登录平台、不上传、不发布、不签约。执行前读取 [Host 执行协议](references/host-protocol.md)。

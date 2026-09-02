@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "blind_input_id": "LQ002",
+  "contract": { "genre": "guyan", "chapter_number": 12, "prior_canon": ["沈蘅只知道账目有缺口", "幕后经手人身份未明"], "prior_state": { "state_revision": 11, "canon_revision": 11, "knowledge": { "沈蘅": ["账目有缺口"] }, "open_hooks": ["H7:经手人身份"] }, "chapter_goal": "通过当场证据缩小经手人范围，不得越过限知。" },
+  "body": "沈蘅翻开新送来的领签，第一眼便认出二叔就是幕后经手人——她其实一直知道，只是从未说破。她没有比对笔迹，也没有询问送签的人，径直命人封了二叔的院门。长辈问她凭什么，她答等明日搜出私印，自会证明。众人被她的笃定压住，当场交出钥匙。沈蘅终于觉得这场旧账快要结束。",
+  "continuity": { "canon_revision": 12, "state_revision": 12, "before_state_revision": 11, "after_state_revision": 12, "facts_added": ["沈蘅一直知道二叔是幕后经手人"], "knowledge_changes": [], "hooks_closed": ["H7"], "conflicts": [] }
+}

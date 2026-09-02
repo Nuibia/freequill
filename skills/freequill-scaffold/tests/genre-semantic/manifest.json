@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "suite_id": "freequill-r3.2-anonymous-genre-semantic-v1",
+  "status": "development",
+  "sealed_holdout": false,
+  "maturity_eligible": false,
+  "protocol": "protocol.md",
+  "protocol_sha256": "a2ba9fdd460f630f5676691ca4825d692d3e0637c6df2d86feb3088b3165b713",
+  "cases": [
+    { "blind_input_id": "XH001", "path": "blind-inputs/XH001.json", "sha256": "c3a143508c37d098906f81031eadf591856447794bdf6157ef31973a2831e693" },
+    { "blind_input_id": "XH002", "path": "blind-inputs/XH002.json", "sha256": "1fb34d6447380b1d4b74f501e5d2fa49ade2183ea183ab06a16b764319d878c2" },
+    { "blind_input_id": "XH003", "path": "blind-inputs/XH003.json", "sha256": "0d9da243eed8088e698ea4f14d7098af5d0d4255fc9e253d55f6e9fed636c9c2" },
+    { "blind_input_id": "GY001", "path": "blind-inputs/GY001.json", "sha256": "27f4b8fedd572cd273c93ec3366fbfddfca883867a1e65ec991754db4d21db74" },
+    { "blind_input_id": "GY002", "path": "blind-inputs/GY002.json", "sha256": "8245239243cf0df2ff143000a25a6f31a3b3eb6208a5b25977aec34c73bef945" },
+    { "blind_input_id": "GY003", "path": "blind-inputs/GY003.json", "sha256": "6de001d647e57beb37f60b5415e39d34cca045fc6ae04de41b0d49913c93b46d" },
+    { "blind_input_id": "XY001", "path": "blind-inputs/XY001.json", "sha256": "bae1b06e13a9183603932f36bf4b7cdb86ee4f2bb647af37f2946aa07d2e2fe1" },
+    { "blind_input_id": "XY002", "path": "blind-inputs/XY002.json", "sha256": "30d642e3e3e640b86d24d317fb7209f4c23319437708dbe7ad559ed51321b21c" },
+    { "blind_input_id": "XY003", "path": "blind-inputs/XY003.json", "sha256": "801da17dd010c18d505f776b85600019149b761296c1f16dbdb44523514a74bf" }
+  ]
+}

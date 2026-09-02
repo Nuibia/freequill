@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifact_type": "long-continuity-update",
+  "chapter_number": 1,
+  "base_canon_revision": 0,
+  "base_state_revision": 0,
+  "canon_ledger": {},
+  "current_state": {},
+  "chapter_snapshot": {},
+  "conflicts": [],
+  "integrity": { "body_sha256": null, "canon_sha256": null, "state_sha256": null, "snapshot_sha256": null, "batch_sha256": null }
+}

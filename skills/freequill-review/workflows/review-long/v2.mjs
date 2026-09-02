@@ -14,8 +14,8 @@ export const workflow = defineSequentialWorkflow({
   steps: [
     ...ROLES.map(([role, capability]) => ({
       id: `review-${role}`, kind: 'capability', capability, outputArtifactType: 'long-role-review',
-      policyRefs: ['policies/review/long.v2.json'], isolation: { required: true, reason: '生产验稿必须与起草执行者隔离' },
-      input: ({ input }) => ({ role, chapter: input.chapter, book_path: input.book_path ?? null, chapter_number: input.chapter_number, attempt: input.attempt ?? 1 }),
+      policyRefs: ['policies/review/long.v2.json'], isolation: { required: true, reason: '生产验稿必须与起草执行者隔离', cold_read: role === 'reader', phases: role === 'reader' ? ['chapter-only', 'freeze-cold-read', 'context-review'] : ['context-review'] },
+      input: ({ input }) => ({ role, chapter: input.chapter, continuity: input.continuity, book_path: input.book_path, genre: input.genre, chapter_number: input.chapter_number, previous_chapter: input.previous_chapter, attempt: input.attempt ?? 1 }),
     })),
     {
       id: 'adjudicate', kind: 'deterministic', outputArtifactType: 'long-review-adjudication', input: ({ results }) => results,

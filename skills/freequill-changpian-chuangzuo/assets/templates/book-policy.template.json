@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "artifact_type": "book-policy",
+  "revision": 0,
+  "status": "needs_configuration",
+  "inherits": {
+    "l1_version": null,
+    "l2_genre": null,
+    "l2_version": null
+  },
+  "core_emotion": null,
+  "style_constraints": [],
+  "red_lines_additions": [],
+  "forbidden_redefinitions": ["core_emotion", "l2_red_lines"],
+  "integrity": { "frozen": false, "source_bundle_sha256": null }
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "artifact_type": "character-dialogue-card",
+  "revision": 0,
+  "characters": [],
+  "scene_anchors": [],
+  "dialogue_tests": {
+    "speaker_attribution_without_names": false,
+    "character_distinction_without_labels": false
+  }
+}

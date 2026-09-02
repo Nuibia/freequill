@@ -1,316 +1,143 @@
 {
-  "schema_version": 1,
-  "capabilities": [
-    {
-      "id": "generate-topic-directions@1",
-      "kind": "llm",
-      "purpose": "generate-topic-directions",
-      "output_contract": {
-        "required": [
-          "candidates"
-        ]
-      }
+  "schema_version": 2,
+  "contract_version": "2.0.0-alpha.1",
+  "context_profiles": {
+    "short-selection-v1": {
+      "status": "complete",
+      "layers": {
+        "l1": ["references/craft/rules/l1-short.json"],
+        "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" },
+        "l3": { "mode": "none" }
+      },
+      "operators": ["references/craft/operators/common-short.json"],
+      "templates": ["assets/templates/story-engine.template.json"],
+      "evals": ["references/craft/rubrics/short-plan.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "not_applicable" }
     },
-    {
-      "id": "evaluate-topic-directions@1",
-      "kind": "llm-eval",
-      "purpose": "evaluate-topic-directions",
-      "output_contract": {
-        "required": [
-          "evaluations"
-        ]
-      }
+    "short-l3-bootstrap-v1": {
+      "status": "complete",
+      "layers": {
+        "l1": ["references/craft/rules/l1-short.json"],
+        "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" },
+        "l3": { "mode": "bootstrap" }
+      },
+      "operators": ["references/craft/operators/common-short.json", "references/craft/operators/{genre}.json"],
+      "templates": ["assets/templates/book-policy.template.json", "assets/templates/story-bible.template.json", "assets/templates/character-dialogue.template.json", "assets/templates/creation-decisions.template.json", "assets/templates/canon-ledger.template.json", "assets/templates/current-state.template.json", "assets/templates/chapter-snapshot.template.json"],
+      "evals": ["references/craft/rubrics/short-plan.json", "references/craft/rubrics/{genre}.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "needs_input" }
     },
-    {
-      "id": "generate-premises@1",
-      "kind": "llm",
-      "purpose": "generate-premises",
-      "output_contract": {
-        "required": [
-          "candidates"
-        ]
-      }
+    "short-plan-v1": {
+      "status": "complete",
+      "layers": {
+        "l1": ["references/craft/rules/l1-short.json"],
+        "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" },
+        "l3": { "mode": "required", "files": ["设定/book-policy.json", "设定/故事圣经.json", "设定/人物与对白卡.json", "设定/创作决策记录.json", "设定/正史账.json", "设定/state/current_state.json", "设定/state/chapter-snapshots/0000.json"] }
+      },
+      "operators": ["references/craft/operators/common-short.json", "references/craft/operators/{genre}.json"],
+      "templates": ["assets/templates/story-engine.template.json", "assets/templates/short-outline.template.json"],
+      "evals": ["references/craft/rubrics/short-plan.json", "references/craft/rubrics/{genre}.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "needs_input", "conflict": "blocked" }
     },
-    {
-      "id": "evaluate-premises@1",
-      "kind": "llm-eval",
-      "purpose": "evaluate-premises",
-      "output_contract": {
-        "required": [
-          "evaluations"
-        ]
-      }
+    "short-draft-v1": {
+      "status": "complete",
+      "layers": {
+        "l1": ["references/craft/rules/l1-short.json"],
+        "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" },
+        "l3": { "mode": "required", "files": ["设定/book-policy.json", "设定/故事圣经.json", "设定/人物与对白卡.json", "设定/创作决策记录.json", "设定/正史账.json", "设定/state/current_state.json", "设定/state/chapter-snapshots/0000.json"] }
+      },
+      "operators": ["references/craft/operators/common-short.json", "references/craft/operators/{genre}.json"],
+      "templates": ["assets/templates/story-engine.template.json", "assets/templates/short-outline.template.json"],
+      "evals": ["references/craft/rubrics/short-review.json", "references/craft/rubrics/{genre}.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "needs_input", "conflict": "blocked" }
     },
-    {
-      "id": "generate-titles@1",
-      "kind": "llm",
-      "purpose": "generate-titles",
-      "output_contract": {
-        "required": [
-          "candidates"
-        ]
-      }
+    "short-review-v1": {
+      "status": "complete",
+      "layers": {
+        "l1": ["references/craft/rules/l1-short.json"],
+        "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" },
+        "l3": { "mode": "required", "files": ["设定/book-policy.json", "设定/故事圣经.json", "设定/人物与对白卡.json", "设定/创作决策记录.json", "设定/正史账.json", "设定/state/current_state.json", "设定/state/chapter-snapshots/0000.json"] }
+      },
+      "operators": ["references/craft/operators/common-short.json", "references/craft/operators/{genre}.json"],
+      "templates": [],
+      "evals": ["references/craft/rubrics/short-review.json", "references/craft/rubrics/{genre}.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "needs_input", "conflict": "blocked" }
     },
-    {
-      "id": "evaluate-titles@1",
-      "kind": "llm-eval",
-      "purpose": "evaluate-titles",
-      "output_contract": {
-        "required": [
-          "evaluations"
-        ]
-      }
+    "genre-diagnosis-v1": {
+      "status": "complete",
+      "layers": {
+        "l1": ["references/craft/rules/l1-short.json"],
+        "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" },
+        "l3": { "mode": "optional" }
+      },
+      "operators": ["references/craft/operators/{genre}.json"],
+      "templates": [],
+      "evals": ["references/craft/rubrics/{genre}.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "optional" }
     },
-    {
-      "id": "evaluate-selection-fit@1",
-      "kind": "llm-eval",
-      "purpose": "evaluate-selection-fit",
-      "output_contract": {
-        "required": [
-          "score",
-          "hard_gates"
-        ]
-      }
+    "submission-v1": {
+      "status": "complete",
+      "layers": { "l1": ["references/craft/rules/l1-short.json"], "l2": { "mode": "optional-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" }, "l3": { "mode": "required", "files": ["设定/book-policy.json", "设定/故事圣经.json", "设定/正史账.json", "设定/state/current_state.json"] } },
+      "operators": [],
+      "templates": [],
+      "evals": ["references/craft/rubrics/short-review.json"],
+      "missing_context": { "product": "blocked", "genre": "optional", "book": "needs_input", "conflict": "blocked" }
     },
-    {
-      "id": "diagnose-genre@1",
-      "kind": "llm-eval",
-      "purpose": "diagnose-genre",
-      "output_contract": {
-        "required": [
-          "diagnosis",
-          "violations",
-          "recommendations"
-        ]
-      }
+    "long-plan-v1": {
+      "status": "complete",
+      "layers": { "l1": ["references/craft/rules/l1-short.json", "references/craft/rules/l1-long.json"], "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" }, "l3": { "mode": "required", "files": ["设定/book-policy.json", "设定/故事圣经.json", "设定/人物与对白卡.json", "设定/创作决策记录.json", "设定/正史账.json", "设定/state/current_state.json", "设定/state/chapter-snapshots/{previous_chapter}.json"] } },
+      "operators": ["references/craft/operators/common-short.json", "references/craft/operators/common-long.json", "references/craft/operators/{genre}.json"],
+      "templates": ["assets/templates/long-chapter-plan.template.json"],
+      "evals": ["references/craft/rubrics/long-plan.json", "references/craft/rubrics/{genre}.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "needs_input", "conflict": "blocked" }
     },
-    {
-      "id": "build-story-engine@1",
-      "kind": "llm",
-      "purpose": "build-story-engine",
-      "output_contract": {
-        "required": [
-          "story_engine"
-        ]
-      }
+    "long-draft-v1": {
+      "status": "complete",
+      "layers": { "l1": ["references/craft/rules/l1-short.json", "references/craft/rules/l1-long.json"], "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" }, "l3": { "mode": "required", "files": ["设定/book-policy.json", "设定/故事圣经.json", "设定/人物与对白卡.json", "设定/创作决策记录.json", "设定/正史账.json", "设定/state/current_state.json", "设定/state/chapter-snapshots/{previous_chapter}.json"] } },
+      "operators": ["references/craft/operators/common-short.json", "references/craft/operators/common-long.json", "references/craft/operators/{genre}.json"],
+      "templates": ["assets/templates/long-chapter-plan.template.json", "assets/templates/continuity-update.template.json"],
+      "evals": ["references/craft/rubrics/long-review.json", "references/craft/rubrics/{genre}.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "needs_input", "conflict": "blocked" }
     },
-    {
-      "id": "build-short-outline@1",
-      "kind": "llm",
-      "purpose": "build-short-outline",
-      "output_contract": {
-        "required": [
-          "outline"
-        ]
-      }
-    },
-    {
-      "id": "evaluate-story-engine@1",
-      "kind": "llm-eval",
-      "purpose": "evaluate-story-engine",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "evaluate-short-outline@1",
-      "kind": "llm-eval",
-      "purpose": "evaluate-short-outline",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "revise-short-plan@1",
-      "kind": "llm",
-      "purpose": "revise-short-plan",
-      "output_contract": {
-        "required": [
-          "story_engine",
-          "outline",
-          "resolved_findings"
-        ]
-      }
-    },
-    {
-      "id": "draft-short-story@1",
-      "kind": "llm",
-      "purpose": "draft-short-story",
-      "output_contract": {
-        "required": [
-          "chapters"
-        ]
-      }
-    },
-    {
-      "id": "revise-short-story@1",
-      "kind": "llm",
-      "purpose": "revise-short-story",
-      "output_contract": {
-        "required": [
-          "chapters",
-          "resolved_findings"
-        ]
-      }
-    },
-    {
-      "id": "review-short-logic@1",
-      "kind": "llm-eval",
-      "purpose": "review-short-logic",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "review-short-platform@1",
-      "kind": "llm-eval",
-      "purpose": "review-short-platform",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "review-short-reader@1",
-      "kind": "llm-eval",
-      "purpose": "review-short-reader",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings",
-          "cold_read"
-        ]
-      }
-    },
-    {
-      "id": "review-short-technique@1",
-      "kind": "llm-eval",
-      "purpose": "review-short-technique",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "review-short-commonsense@1",
-      "kind": "llm-eval",
-      "purpose": "review-short-commonsense",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "build-long-chapter-plan@1",
-      "kind": "llm",
-      "purpose": "build-long-chapter-plan",
-      "output_contract": {
-        "required": [
-          "chapter_plan"
-        ]
-      }
-    },
-    {
-      "id": "draft-long-chapter@1",
-      "kind": "llm",
-      "purpose": "draft-long-chapter",
-      "output_contract": {
-        "required": [
-          "content"
-        ]
-      }
-    },
-    {
-      "id": "revise-long-chapter@1",
-      "kind": "llm",
-      "purpose": "revise-long-chapter",
-      "output_contract": {
-        "required": [
-          "content",
-          "resolved_findings"
-        ]
-      }
-    },
-    {
-      "id": "review-long-logic@1",
-      "kind": "llm-eval",
-      "purpose": "review-long-logic",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "review-long-editorial@1",
-      "kind": "llm-eval",
-      "purpose": "review-long-editorial",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "review-long-reader@1",
-      "kind": "llm-eval",
-      "purpose": "review-long-reader",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "review-long-technique@1",
-      "kind": "llm-eval",
-      "purpose": "review-long-technique",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "review-long-commonsense@1",
-      "kind": "llm-eval",
-      "purpose": "review-long-commonsense",
-      "output_contract": {
-        "required": [
-          "verdict",
-          "findings"
-        ]
-      }
-    },
-    {
-      "id": "build-submission-materials@1",
-      "kind": "llm",
-      "purpose": "build-submission-materials",
-      "output_contract": {
-        "required": [
-          "markdown",
-          "profile"
-        ]
-      }
+    "long-review-v1": {
+      "status": "complete",
+      "layers": { "l1": ["references/craft/rules/l1-short.json", "references/craft/rules/l1-long.json"], "l2": { "mode": "required-by-genre", "pattern": "references/craft/rules/l2-{genre}.json" }, "l3": { "mode": "required", "files": ["设定/book-policy.json", "设定/故事圣经.json", "设定/人物与对白卡.json", "设定/创作决策记录.json", "设定/正史账.json", "设定/state/current_state.json", "设定/state/chapter-snapshots/{previous_chapter}.json"] } },
+      "operators": ["references/craft/operators/common-long.json", "references/craft/operators/{genre}.json"],
+      "templates": [],
+      "evals": ["references/craft/rubrics/long-review.json", "references/craft/rubrics/{genre}.json"],
+      "missing_context": { "product": "blocked", "genre": "needs_input", "book": "needs_input", "conflict": "blocked" }
     }
+  },
+  "capabilities": [
+    { "id": "generate-topic-directions@1", "kind": "llm", "purpose": "生成受写作上下文约束的立意方向", "input_schema": { "type": "object", "required": ["genre"] }, "output_schema": { "type": "object", "required": ["candidates"] }, "context_profile": "short-selection-v1", "policy_requirements": ["policies/selection/topic-scoring.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["candidates"] } },
+    { "id": "evaluate-topic-directions@1", "kind": "llm-eval", "purpose": "隔离评价立意方向", "input_schema": { "type": "object", "required": ["request", "candidates"] }, "output_schema": { "type": "object", "required": ["evaluations"] }, "context_profile": "short-selection-v1", "policy_requirements": ["policies/selection/topic-scoring.v2.json"], "isolation": { "required_in_modes": ["fast"] }, "side_effects": [], "output_contract": { "required": ["evaluations"] } },
+    { "id": "generate-premises@1", "kind": "llm", "purpose": "生成可持续 Premise", "input_schema": { "type": "object", "required": ["request", "topic_direction_package"] }, "output_schema": { "type": "object", "required": ["candidates"] }, "context_profile": "short-selection-v1", "policy_requirements": ["policies/selection/premise-scoring.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["candidates"] } },
+    { "id": "evaluate-premises@1", "kind": "llm-eval", "purpose": "隔离评价 Premise", "input_schema": { "type": "object", "required": ["request", "topic_direction_package", "candidates"] }, "output_schema": { "type": "object", "required": ["evaluations"] }, "context_profile": "short-selection-v1", "policy_requirements": ["policies/selection/premise-scoring.v2.json"], "isolation": { "required_in_modes": ["fast"] }, "side_effects": [], "output_contract": { "required": ["evaluations"] } },
+    { "id": "generate-titles@1", "kind": "llm", "purpose": "生成与承诺一致的标题", "input_schema": { "type": "object", "required": ["request", "premise_package"] }, "output_schema": { "type": "object", "required": ["candidates"] }, "context_profile": "short-selection-v1", "policy_requirements": ["policies/selection/title-scoring.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["candidates"] } },
+    { "id": "evaluate-titles@1", "kind": "llm-eval", "purpose": "隔离评价标题", "input_schema": { "type": "object", "required": ["request", "premise_package", "candidates"] }, "output_schema": { "type": "object", "required": ["evaluations"] }, "context_profile": "short-selection-v1", "policy_requirements": ["policies/selection/title-scoring.v2.json"], "isolation": { "required_in_modes": ["fast"] }, "side_effects": [], "output_contract": { "required": ["evaluations"] } },
+    { "id": "evaluate-selection-fit@1", "kind": "llm-eval", "purpose": "隔离评价完整选题执行适配", "input_schema": { "type": "object", "required": ["request", "topic", "premise", "title"] }, "output_schema": { "type": "object", "required": ["score", "hard_gates"] }, "context_profile": "short-selection-v1", "policy_requirements": ["policies/selection/overall-scoring.v2.json"], "isolation": { "required_in_modes": ["fast"] }, "side_effects": [], "output_contract": { "required": ["score", "hard_gates"] } },
+    { "id": "configure-book-context@2", "kind": "llm", "purpose": "依据选题和品类生成可继承的书级上下文", "input_schema": { "type": "object", "required": ["book_path", "genre", "topic_package"] }, "output_schema": { "type": "object", "required": ["book_policy", "story_bible", "character_dialogue", "creation_decisions", "canon_ledger", "current_state", "chapter_snapshot"] }, "context_profile": "short-l3-bootstrap-v1", "policy_requirements": ["policies/creation/short.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["book_policy", "story_bible", "character_dialogue", "creation_decisions", "canon_ledger", "current_state", "chapter_snapshot"] } },
+    { "id": "diagnose-genre@1", "kind": "llm-eval", "purpose": "按品类上下文诊断核心情绪、引擎和红线", "input_schema": { "type": "object", "required": ["genre"] }, "output_schema": { "type": "object", "required": ["diagnosis", "violations", "recommendations"] }, "context_profile": "genre-diagnosis-v1", "policy_requirements": [], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["diagnosis", "violations", "recommendations"] } },
+    { "id": "build-story-engine@1", "kind": "llm", "purpose": "构造受三层上下文约束的短篇故事引擎", "input_schema": { "type": "object", "required": ["book_path", "genre"] }, "output_schema": { "type": "object", "required": ["story_engine"] }, "context_profile": "short-plan-v1", "policy_requirements": ["policies/creation/short.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["story_engine"] } },
+    { "id": "build-short-outline@1", "kind": "llm", "purpose": "生成受三层上下文约束的短篇细纲", "input_schema": { "type": "object", "required": ["book_path", "genre", "story_engine"] }, "output_schema": { "type": "object", "required": ["outline"] }, "context_profile": "short-plan-v1", "policy_requirements": ["policies/creation/short.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["outline"] } },
+    { "id": "evaluate-story-engine@1", "kind": "llm-eval", "purpose": "隔离评价故事引擎", "input_schema": { "type": "object", "required": ["book_path", "genre", "story_engine", "outline"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "short-plan-v1", "policy_requirements": ["policies/creation/short.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "evaluate-short-outline@1", "kind": "llm-eval", "purpose": "隔离评价短篇细纲", "input_schema": { "type": "object", "required": ["book_path", "genre", "story_engine", "outline"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "short-plan-v1", "policy_requirements": ["policies/creation/short.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "revise-short-plan@1", "kind": "llm", "purpose": "按隔离 findings 最小返修故事引擎与细纲", "input_schema": { "type": "object", "required": ["book_path", "genre", "story_engine", "outline", "evaluations"] }, "output_schema": { "type": "object", "required": ["story_engine", "outline", "resolved_findings"] }, "context_profile": "short-plan-v1", "policy_requirements": ["policies/creation/short.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["story_engine", "outline", "resolved_findings"] } },
+    { "id": "draft-short-story@1", "kind": "llm", "purpose": "按冻结计划与三层上下文起草正文", "input_schema": { "type": "object", "required": ["request", "story_engine", "outline"] }, "output_schema": { "type": "object", "required": ["chapters"] }, "context_profile": "short-draft-v1", "policy_requirements": ["policies/creation/short.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["chapters"] } },
+    { "id": "revise-short-story@1", "kind": "llm", "purpose": "按合并 blocker 最小返修短篇正文", "input_schema": { "type": "object", "required": ["draft", "review", "attempt"] }, "output_schema": { "type": "object", "required": ["chapters", "resolved_findings"] }, "context_profile": "short-draft-v1", "policy_requirements": ["policies/creation/short.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["chapters", "resolved_findings"] } },
+    { "id": "review-short-logic@1", "kind": "llm-eval", "purpose": "隔离逻辑与连续性评审", "input_schema": { "type": "object", "required": ["role", "body", "book_path", "genre", "attempt"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "short-review-v1", "policy_requirements": ["policies/review/short.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "review-short-platform@1", "kind": "llm-eval", "purpose": "隔离责编与完成度评审", "input_schema": { "type": "object", "required": ["role", "body", "book_path", "genre", "attempt"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "short-review-v1", "policy_requirements": ["policies/review/short.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "review-short-reader@1", "kind": "llm-eval", "purpose": "正文优先的隔离冷读评审", "input_schema": { "type": "object", "required": ["role", "body", "book_path", "genre", "attempt"] }, "output_schema": { "type": "object", "required": ["verdict", "findings", "cold_read"] }, "context_profile": "short-review-v1", "policy_requirements": ["policies/review/short.v2.json"], "isolation": { "required": true, "cold_read": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings", "cold_read"] } },
+    { "id": "review-short-technique@1", "kind": "llm-eval", "purpose": "隔离技法与小说化评审", "input_schema": { "type": "object", "required": ["role", "body", "book_path", "genre", "attempt"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "short-review-v1", "policy_requirements": ["policies/review/short.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "review-short-commonsense@1", "kind": "llm-eval", "purpose": "隔离常识、权限与长尾漏洞评审", "input_schema": { "type": "object", "required": ["role", "body", "book_path", "genre", "attempt"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "short-review-v1", "policy_requirements": ["policies/review/short.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "build-submission-materials@1", "kind": "llm", "purpose": "为已完成作品生成本地通用投稿物料", "input_schema": { "type": "object", "required": ["book_path", "delivery"] }, "output_schema": { "type": "object", "required": ["markdown", "profile"] }, "context_profile": "submission-v1", "policy_requirements": ["policies/platform/submission.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["markdown", "profile"] } },
+    { "id": "build-long-chapter-plan@1", "kind": "llm", "purpose": "依据冻结正史、状态与上一快照构造长篇章节计划", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter"] }, "output_schema": { "type": "object", "required": ["chapter_plan"] }, "context_profile": "long-plan-v1", "policy_requirements": ["policies/creation/long.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["chapter_plan"] } },
+    { "id": "draft-long-chapter@1", "kind": "llm", "purpose": "按冻结计划与三层 Context 起草长篇章节", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter", "chapter_plan"] }, "output_schema": { "type": "object", "required": ["content"] }, "context_profile": "long-draft-v1", "policy_requirements": ["policies/creation/long.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["content"] } },
+    { "id": "derive-long-continuity@1", "kind": "llm", "purpose": "从冻结正文生成候选正史、状态与章节快照", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter", "chapter"] }, "output_schema": { "type": "object", "required": ["canon_ledger", "current_state", "chapter_snapshot", "conflicts"] }, "context_profile": "long-draft-v1", "policy_requirements": ["policies/creation/long.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["canon_ledger", "current_state", "chapter_snapshot", "conflicts"] } },
+    { "id": "revise-long-chapter@1", "kind": "llm", "purpose": "按隔离 findings 最小返修长篇章节", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter", "draft", "review", "attempt"] }, "output_schema": { "type": "object", "required": ["content", "resolved_findings"] }, "context_profile": "long-draft-v1", "policy_requirements": ["policies/creation/long.v2.json"], "isolation": { "required": false }, "side_effects": [], "output_contract": { "required": ["content", "resolved_findings"] } },
+    { "id": "review-long-logic@1", "kind": "llm-eval", "purpose": "长篇逻辑与连续性评审", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter", "chapter", "continuity"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "long-review-v1", "policy_requirements": ["policies/review/long.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "review-long-editorial@1", "kind": "llm-eval", "purpose": "长篇责编与品类评审", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter", "chapter", "continuity"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "long-review-v1", "policy_requirements": ["policies/review/long.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "review-long-reader@1", "kind": "llm-eval", "purpose": "长篇读者冷读评审", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter", "chapter", "continuity"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "long-review-v1", "policy_requirements": ["policies/review/long.v2.json"], "isolation": { "required": true, "cold_read": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "review-long-technique@1", "kind": "llm-eval", "purpose": "长篇技法评审", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter", "chapter", "continuity"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "long-review-v1", "policy_requirements": ["policies/review/long.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } },
+    { "id": "review-long-commonsense@1", "kind": "llm-eval", "purpose": "长篇常识与状态评审", "input_schema": { "type": "object", "required": ["book_path", "genre", "chapter_number", "previous_chapter", "chapter", "continuity"] }, "output_schema": { "type": "object", "required": ["verdict", "findings"] }, "context_profile": "long-review-v1", "policy_requirements": ["policies/review/long.v2.json"], "isolation": { "required": true }, "side_effects": [], "output_contract": { "required": ["verdict", "findings"] } }
   ]
 }

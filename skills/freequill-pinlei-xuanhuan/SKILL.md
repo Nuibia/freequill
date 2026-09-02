@@ -9,4 +9,6 @@ description: 创作或诊断男频玄幻仙侠的成长循环、越级兑现、�
 
 本 Skill 可以独立诊断，也可被短篇或长篇 Workflow 嵌套；它不替代作品事实或用户硬约束。
 
+Context Composer 必须显式加载 L1、玄幻 L2 规则与算子、`RUBRIC-XUANHUAN-001`，以及作品存在时的 L3。L3 只能加严限制，不能把核心情绪改成单纯苦修，也不能删除力量边界、对手学习或地图连续性硬门。
+
 执行前读取 [Host 执行协议](references/host-protocol.md)。

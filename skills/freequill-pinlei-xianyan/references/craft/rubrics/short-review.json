@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "rubric_id": "RUBRIC-SHORT-REVIEW-001",
+  "version": "1.0.0",
+  "roles": {
+    "logic": ["因果", "人物限知", "证据权限", "时间空间", "物件与信息生命周期", "状态连续性"],
+    "editorial": ["承诺兑现", "结构", "品类", "红线", "完成度"],
+    "reader": ["冷读复述", "理解链", "期待", "情绪回报", "阅读断点"],
+    "technique": ["场景", "人物", "对白", "节奏", "信息释放", "重复与说明书感"],
+    "commonsense": ["现实常识", "专业边界", "物理可行性", "物件位置与持有人", "可感知性", "权限", "长尾漏洞"]
+  },
+  "finding_schema": {
+    "required": ["finding_id", "rule_ids", "severity", "evidence", "location", "mechanism", "minimal_fix", "confidence"],
+    "severity": ["P0", "P1", "P2"],
+    "confidence": ["certain", "probable", "uncertain"]
+  },
+  "cold_read": { "role": "reader", "body_first": true, "freeze_before_context": true },
+  "exit": { "required_role_verdict": "PASS", "max_p0": 0, "max_p1": 0 },
+  "loop": { "max_full_attempts": 3, "stop_after_consecutive_no_improvement": 2, "narrow_cannot_sign_exit": true }
+}

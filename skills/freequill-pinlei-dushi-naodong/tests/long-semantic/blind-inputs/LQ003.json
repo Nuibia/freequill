@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "blind_input_id": "LQ003",
+  "contract": { "genre": "xuanhuan", "chapter_number": 20, "prior_canon": ["铜钥由留在山下的阿宁保管", "谢衡独自进入塔内"], "prior_state": { "state_revision": 19, "canon_revision": 19, "locations": { "谢衡": "塔内", "阿宁": "山下" }, "objects": { "铜钥": "阿宁" } }, "chapter_goal": "在塔内受限条件下寻找开门办法，保持物件与空间连续。" },
+  "body": "塔门后的第二道铜锁挡住去路。谢衡摸出那把铜钥，插进锁孔，门应声而开。他穿过长廊，把钥匙收回袖中，没有想起仍在山下等候的阿宁。门后石碑写着新的试炼规则，他读完便继续向上。",
+  "continuity": { "canon_revision": 20, "state_revision": 20, "before_state_revision": 19, "after_state_revision": 20, "object_changes": ["铜钥:阿宁->谢衡"], "relationship_changes": [], "conflicts": [] }
+}

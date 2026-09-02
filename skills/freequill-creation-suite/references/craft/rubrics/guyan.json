@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "rubric_id": "RUBRIC-GUYAN-001",
+  "version": "1.0.0",
+  "genre": "guyan",
+  "dimensions": [
+    { "id": "female-agency", "rule_refs": ["CRAFT-L2-GUYAN-AGENCY-001"], "pass": "关键转折由女主判断、选择并承担后果" },
+    { "id": "layered-ascent", "rule_refs": ["CRAFT-L2-GUYAN-ASCENT-001"], "pass": "本层胜利改变权限和责任，并因果打开下一层" },
+    { "id": "bounded-advantage", "rule_refs": ["CRAFT-L2-GUYAN-ADVANTAGE-001"], "pass": "先验信息有盲区、需验证且至少一次迫使改案" },
+    { "id": "historical-order", "rule_refs": ["CRAFT-L2-GUYAN-ORDER-001"], "pass": "身份礼制限制行动、越界有后果且全文自洽" },
+    { "id": "memory", "rule_refs": ["CRAFT-L2-GUYAN-MEMORY-001"], "pass": "记忆由现场触发、改变选择并返回当下行动" },
+    { "id": "opponents", "rule_refs": ["CRAFT-L2-GUYAN-OPPONENT-001"], "pass": "对手利益和压力分层，核心对手能够学习" }
+  ],
+  "hard_red_lines": ["女主失去主线能动性", "男主替女主完成核心破局", "先验优势无边界自动解题", "称谓礼制与世界规则自相矛盾", "现代控制逻辑伪装成古代身份秩序", "大段回忆切断现场行动"]
+}

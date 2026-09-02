@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "artifact_type": "canon-ledger",
+  "revision": 0,
+  "frozen_facts": [],
+  "characters": {},
+  "relationships": {},
+  "objects": {},
+  "events": [],
+  "hooks": [],
+  "unresolved_conflicts": []
+}

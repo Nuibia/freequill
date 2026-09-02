@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "artifact_type": "creation-decisions",
+  "revision": 0,
+  "decisions": [],
+  "required_decision_fields": ["decision_id", "original_risk", "operator_id", "alternatives", "selected_action", "observable_result", "status"]
+}

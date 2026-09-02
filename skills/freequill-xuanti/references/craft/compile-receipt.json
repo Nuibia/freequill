@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "receipt_type": "freequill-public-craft-compile",
+  "ir_version": "3.4.0-rc.1",
+  "compile_batch": "R3.4-20260902-a",
+  "ir_sha256": "c0b70273646e0db34af84dcd9fea89af63d1e87d250a86858735dcf54c743918",
+  "coverage": {
+    "rules": 42,
+    "operators": 37,
+    "rubrics": 8,
+    "templates": 11,
+    "public_lineage": 42,
+    "private_lineage": {
+      "mapped": 42,
+      "total": 42
+    },
+    "public_traceability_percent": 100,
+    "private_traceability_percent": 100
+  },
+  "inputs": {
+    "operators/common-long.json": "bc04f80f94bf57a421b4b3799eb38dccec5a8413ac822f4720659c9569df476d",
+    "operators/common-short.json": "a584dbddde7d5407b17fcef05657d5eb81b4d04a33e23f908a08d4e501ce0a82",
+    "operators/dushi-naodong.json": "832b7523bf9184aeaa92bc18a53d5a67bdac01c7a6293b0027b8799fe9c0479f",
+    "operators/guyan.json": "07214895f76efb787ce5742229d096ddf1603714b87e9341759a545865449bcd",
+    "operators/xianyan.json": "e096c038d45cd892f1e7f3a416a2963e0d4187b87b953e3cdae55a8b9f5d67c8",
+    "operators/xuanhuan.json": "298398655fb1db2387c0552b3d3c8c861188a75fae52e2f8b2d37ab5458fe1ea",
+    "public-lineage.json": "95a15e7324214b9b084223c2135c94751cfb7384c9325c462d34a264f345a800",
+    "rubrics/dushi-naodong.json": "790330c6fbc3a61b962e96665a85c25efddc1519a48307182e08134db0e2979b",
+    "rubrics/guyan.json": "a872f7143ae8d3b77c1748160c719fbe0bcba5cfdc0cbb591e3d5657336298bb",
+    "rubrics/long-plan.json": "93671b1109c6808579420685a72905254fab84b886d5a468846d5da7cc76ed0e",
+    "rubrics/long-review.json": "c0fef21d955964d33cf6de54bf656b1c15f7c913de5a3fd7ce359857d6a8680a",
+    "rubrics/short-plan.json": "24d86c57b42dbca22a618cf177922a85d20bd871d04a925199b4631c8b810053",
+    "rubrics/short-review.json": "b000f6579a62ff618390cd54da432c8193b49f6c1d94d80a6b8866194b683e47",
+    "rubrics/xianyan.json": "cedfe330634be2d39d8ea9982478b5b0415d5d48f8330cd6d001c0b575db753d",
+    "rubrics/xuanhuan.json": "52102793aebf9b8552e14bbaf017b87688e394a236acd2f6d4b73f253cade468",
+    "rules/l1-long.json": "62f993636a42ca244756e047861eb51b9f9f04362c030732f861672bb28578a3",
+    "rules/l1-short.json": "83c4eca7b5550a15e136db5863e0a08fca7874722930e489332ce3f6fc966b5e",
+    "rules/l2-dushi-naodong.json": "bfef205895284d65d781daf9993f95bca6418427b43483aa24c911d91c3cd686",
+    "rules/l2-guyan.json": "e618d1e79d2ab2a1db87b52969a38531bb61928b3d1ebe1eb04dc916a833ce2a",
+    "rules/l2-xianyan.json": "1849b570df604a813f070f72687e31e68c4f6702bc2e9efdc54e49d6e3abf19f",
+    "rules/l2-xuanhuan.json": "7ba101e60beeb9631e6b07a320652ddbacf52b4c70c22fad4170e7668f4725ac",
+    "templates/book-policy.template.json": "c32fa6d488ecd111de2dd399271e9946116e33ffe2781f262ea84dbe2c8ce341",
+    "templates/canon-ledger.template.json": "2230e4374d4d76fb60ced98cd2853f2f8f7410c1b9465bf011f170fa075c4cd0",
+    "templates/chapter-snapshot.template.json": "1e79b8d049629c5ec9854694a17edfee05e2cc7ca5ba9c06a949898f3008c430",
+    "templates/character-dialogue.template.json": "c6ca49897eb32447aab18abf4d1001ae8c67f6b691da2189094eb22fe01b8969",
+    "templates/continuity-update.template.json": "6f01c1f7b14d57f9b5bdb7e37a0bb40001f66c06587b527be992bc768bddfc4f",
+    "templates/creation-decisions.template.json": "6e71188c3bf4f3acefdf45b313d30d1e52569ebc1e1fe623f721289859eb1ae6",
+    "templates/current-state.template.json": "5492b2723e6743da5960ea5d51fd8b6e4cda6cf153a72d1810758ed3f7dd54e3",
+    "templates/long-chapter-plan.template.json": "a6305aa5ac6841677d807e96eb1c0183090a112c11482402596461cac9d785a2",
+    "templates/short-outline.template.json": "aaeb5b760d6f3dfeaf18fc1bd50577c0381f17958de45c7e43c11558c1ff7c83",
+    "templates/story-bible.template.json": "5a25f818f1d52525c789e7343a61227664fad63fc7cc2d39656b00c91703fbc4",
+    "templates/story-engine.template.json": "357b5aae18c0a661ae37b24bebb617418f65ed8fa744c19fb1260bdd0b588823"
+  },
+  "generated_policy_genres": [
+    "dushi-naodong",
+    "guyan",
+    "xianyan",
+    "xuanhuan"
+  ]
+}

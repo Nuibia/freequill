@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "artifact_type": "story-bible",
+  "revision": 0,
+  "status": "needs_configuration",
+  "premise": null,
+  "protagonist": { "identity": null, "desire": null, "fear": null, "agency": null, "cost_boundary": null },
+  "central_conflict": null,
+  "story_engine": null,
+  "world_rules": [],
+  "ability_rules": { "inputs": [], "outputs": [], "limits": [], "costs": [] },
+  "relationship_axes": [],
+  "ending_promise": null
+}
