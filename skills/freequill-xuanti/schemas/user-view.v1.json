@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://freequill.example/schemas/user-view.v1.json",
+  "title": "FreeQuill writer-facing result",
+  "type": "object",
+  "required": ["format", "state", "message"],
+  "properties": {
+    "format": { "const": "freequill-writer-view-v1" },
+    "state": {
+      "enum": ["working", "question", "cannot_continue", "problem", "done"]
+    },
+    "message": { "type": "string", "minLength": 1 },
+    "question": { "type": "string", "minLength": 1 },
+    "delivery": {
+      "type": "object",
+      "required": ["title", "story", "saved_at", "submission_materials", "next_options"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "story": {
+          "type": "object",
+          "required": ["chapters", "body_path"],
+          "properties": {
+            "chapters": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["content"],
+                "properties": {
+                  "number": { "type": ["integer", "string"] },
+                  "title": { "type": ["string", "null"] },
+                  "content": { "type": "string", "minLength": 1 }
+                },
+                "additionalProperties": false
+              }
+            },
+            "body_path": { "type": "string", "minLength": 1 }
+          },
+          "additionalProperties": false
+        },
+        "saved_at": { "type": "string", "minLength": 1 },
+        "submission_materials": { "type": ["string", "null"] },
+        "next_options": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        }
+      },
+      "additionalProperties": false
+    },
+    "developer_diagnostics": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "state": { "const": "question" } } },
+      "then": { "required": ["question"] }
+    },
+    {
+      "if": { "properties": { "state": { "const": "done" } } },
+      "then": { "required": ["delivery"] }
+    }
+  ],
+  "additionalProperties": false
+}

@@ -10,6 +10,29 @@
     "default_works_directory": "我的作品",
     "upgrade_preserves_existing_works": true
   },
+  "user_experience": {
+    "contract": "references/user-experience-contract.json",
+    "schema": "schemas/user-view.v1.json",
+    "host_playbook": "references/agent-host-playbook.md",
+    "default_entrypoint": "runtime/user-presentation.mjs#runUserJourney",
+    "diagnostics_default_visible": false,
+    "explicit_diagnostics_supported": true,
+    "natural_language_default_side_effects": [
+      "workspace_write"
+    ],
+    "side_effect_scope": "$FREEQUILL_HOME",
+    "completion_requires": [
+      "completed-run",
+      "root-delivery",
+      "materialized-story",
+      "writer-view-done"
+    ],
+    "forbidden_production_bypasses": [
+      "tests/smoke.mjs",
+      "fixture-output",
+      "direct-story-write"
+    ]
+  },
   "entry_workflows": [
     {
       "workflow": "long-chapter@2",

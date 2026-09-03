@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "contract_id": "freequill-output-first@1",
+  "audience": "writer",
+  "default_diagnostics": "hidden",
+  "entry_request": "帮我写一篇短故事",
+  "principles": [
+    "先交付作品，再说明保存位置和可选下一步",
+    "内部质量控制自动运行，不要求普通用户理解或操作",
+    "只有确实缺少创作决定时才向用户提出一个自然问题",
+    "只有用户主动要求诊断时才展示开发者信息"
+  ],
+  "hidden_terms": [
+    "Workflow",
+    "Runtime",
+    "Capability",
+    "Eval",
+    "Trace",
+    "Rule ID",
+    "Artifact",
+    "L1",
+    "L2",
+    "L3",
+    "run_id",
+    "node_id",
+    "context_bundle",
+    "agent_id",
+    "哈希",
+    "盲审",
+    "独立读者",
+    "隔离验稿",
+    "五路验稿",
+    "子 Agent",
+    "创作套件要求",
+    "创作流程",
+    "创作规范",
+    "写作仓"
+  ],
+  "visible_states": [
+    "working",
+    "question",
+    "cannot_continue",
+    "problem",
+    "done"
+  ],
+  "delivery_required": [
+    "title",
+    "story",
+    "saved_at",
+    "submission_materials",
+    "next_options"
+  ],
+  "progress_messages": {
+    "idea": "正在构思故事。",
+    "workspace": "正在准备作品空间。",
+    "plan": "正在梳理人物、冲突和故事走向。",
+    "writing": "正在写作和润色正文。",
+    "checking": "正在做最后检查。",
+    "finishing": "正在整理成品。",
+    "default": "正在处理你的作品。"
+  },
+  "progress_policy": {
+    "silent_when_no_update_is_needed": true,
+    "allowed_messages_only": true,
+    "must_not_explain_internal_quality_control": true
+  },
+  "diagnostics_access": {
+    "default_visible": false,
+    "requires_explicit_user_request": true,
+    "local_records_preserved": true
+  },
+  "local_save_authorization": {
+    "derived_from_creation_request": true,
+    "allowed_side_effects": [
+      "workspace_write"
+    ],
+    "scope": "FREEQUILL_HOME",
+    "does_not_authorize": [
+      "git_commit",
+      "git_push",
+      "platform_publish"
+    ]
+  }
+}

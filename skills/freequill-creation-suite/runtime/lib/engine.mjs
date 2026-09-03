@@ -20,7 +20,7 @@ import {
   withRunLock,
 } from './storage.mjs';
 import { getWorkflow, listWorkflows } from '../registry.mjs';
-import { resolveCapability, validateCapabilityInput, validatePolicyRefs } from '../capability-registry.mjs';
+import { normalizeCapabilityOutput, resolveCapability, validateCapabilityInput, validateCapabilityOutput, validatePolicyRefs } from '../capability-registry.mjs';
 import { composeActionContext } from '../context-composer.mjs';
 
 const TERMINAL = new Set(['completed', 'blocked', 'failed']);
@@ -379,10 +379,14 @@ export function submitRun({ root = process.cwd(), stateDir = null, runId, action
       blockState(state, result.reason ?? 'Capability 无法完成', result.details ?? null);
     } else {
       if (!object(result.output)) throw new Error('completed result.output 必须是对象');
+      let submittedOutput = result.output;
       if (action.action_type === 'capability') {
         const capability = resolveCapability(root, action.capability);
-        const missingFields = (capability.output_contract?.required ?? []).filter((key) => !(key in result.output));
+        submittedOutput = normalizeCapabilityOutput(capability, result.output);
+        const missingFields = (capability.output_contract?.required ?? []).filter((key) => !(key in submittedOutput));
         if (missingFields.length) throw new Error(`Capability 输出缺字段：${missingFields.join(', ')}`);
+        const schemaErrors = validateCapabilityOutput(capability, submittedOutput, action.input);
+        if (schemaErrors.length) throw new Error(`Capability 输出不符合 Schema：${schemaErrors.join('；')}`);
       }
       const sideEffects = result.side_effects ?? [];
       if (!Array.isArray(sideEffects)) throw new Error('side_effects 必须是数组');
@@ -405,7 +409,7 @@ export function submitRun({ root = process.cwd(), stateDir = null, runId, action
       let artifactRef = null;
       if (action.internal.outputArtifactType) artifactRef = createArtifact(paths, {
         type: action.internal.outputArtifactType,
-        payload: result.output,
+        payload: submittedOutput,
         producer: {
           workflow: action.workflow,
           instance_id: action.instance_id,
@@ -421,7 +425,7 @@ export function submitRun({ root = process.cwd(), stateDir = null, runId, action
         evidence_refs: evidenceRefs,
         context_bundle_sha256: action.context_bundle?.integrity?.canonical_sha256 ?? null,
       };
-      applyNodeResult(instance, action.node_id, result.output, artifactRef, execution);
+      applyNodeResult(instance, action.node_id, submittedOutput, artifactRef, execution);
       state.pending_action = null;
       state.status = 'running';
       state.needs_input = null;
