@@ -6,6 +6,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { checkRun } from '../runtime/lib/engine.mjs';
 import { runHostLoop } from '../runtime/lib/host-loop.mjs';
+import { runUserJourney } from '../runtime/user-presentation.mjs';
+import { main as runtimeCli } from '../scripts/runtime.mjs';
 import { createWork, materializeBookContext, withBookWriteLock, writeWorkBatch } from '../runtime/workspace.mjs';
 import { ensureUserSpace } from '../runtime/user-space.mjs';
 const root = path.resolve(process.env.FREEQUILL_SKILL_ROOT ?? path.join(path.dirname(fileURLToPath(import.meta.url)), '..'));
@@ -68,7 +70,7 @@ const outputs = {
   'build-short-outline@1': { outline: [{ chapter: 1, goal: '发现记录并验证' }, { chapter: 2, goal: '公开证据阻止事故' }, { chapter: 3, goal: '承担代价并兑现真相' }] },
   'evaluate-story-engine@1': { verdict: 'PASS', findings: [] },
   'evaluate-short-outline@1': { verdict: 'PASS', findings: [] },
-  'draft-short-story@1': { chapters: [{ number: 1, title: '记录', content: '检修屏上多出一条明天的事故记录。维修员没有关掉它，而是开始核对每一枚螺栓。' }, { number: 2, title: '代价', content: '他把证据投到全员屏幕，停工警报响起时，解雇通知也到了。' }, { number: 3, title: '明天', content: '事故没有发生。调查员沿着被改写的记录，找到了真正动手的人。' }] },
+  'draft-short-story@1': { chapters: [{ chapter: 1, title: '记录', body: '检修屏上多出一条明天的事故记录。维修员没有关掉它，而是开始核对每一枚螺栓。' }, { chapter: 2, title: '代价', body: '他把证据投到全员屏幕，停工警报响起时，解雇通知也到了。' }, { chapter: 3, title: '明天', body: '事故没有发生。调查员沿着被改写的记录，找到了真正动手的人。' }] },
   'build-long-chapter-plan@1': { chapter_plan: { goal: '拿到第一条可验证线索', obstacle: '线索会暴露主角', hook: '对手已经知道他在查' } },
   'draft-long-chapter@1': { title: '第一章 线索', content: '雨停时，他在门缝里发现一张只写着自己名字的车票。' },
   'derive-long-continuity@1': {
@@ -81,10 +83,20 @@ const outputs = {
 };
 for (const id of ['review-short-logic@1','review-short-platform@1','review-short-technique@1','review-short-commonsense@1','review-long-logic@1','review-long-editorial@1','review-long-reader@1','review-long-technique@1','review-long-commonsense@1']) outputs[id] = { verdict: 'PASS', findings: [] };
 outputs['review-short-reader@1'] = { verdict: 'PASS', findings: [], cold_read: { summary: '主角为阻止事故承担失业代价' } };
-async function execute(action) { if (action.action_type === 'human_input') { const selected = { 'topic-direction@2': 'direction-a', 'premise-selection@2': 'premise-a', 'title-selection@2': 'title-a' }[action.workflow]; const output = selected ? { selected_candidate_id: selected } : { approved: true }; return { status: 'completed', output, side_effects: [], executor: { isolated: false, agent_id: 'fixture-human' } }; } const output = outputs[action.capability]; if (!output) throw new Error(`fixture 缺少 ${action.capability}`); return { status: 'completed', output, side_effects: [], executor: action.isolation?.required ? { isolated: true, agent_id: `isolated-${action.capability}`, ...(action.isolation?.cold_read ? { cold_read_frozen_before_context: true } : {}) } : { isolated: false, agent_id: 'host-agent' } }; }
-const fast = await runHostLoop({ root, stateDir: userSpace.stateDir, start: { workflow: 'fast-short@2', runId: 'portable-fast-smoke', input: { mode: 'fast', brief: '写一篇短故事', genre: 'dushi-naodong', platform: 'generic', selection: { mode: 'fast' } }, accessGrant: { allowed_side_effects: ['workspace_write'] }, requestedBy: { agent_id: 'host-agent' } }, execute });
-assert.equal(fast.status, 'completed');
-assert.equal(checkRun({ root, stateDir: userSpace.stateDir, runId: fast.run_id, completable: true }).ok, true);
+async function execute(action) { if (action.action_type === 'human_input') { const selected = { 'topic-direction@2': 'direction-a', 'premise-selection@2': 'premise-a', 'title-selection@2': 'title-a' }[action.workflow]; const output = selected ? { selected_candidate_id: selected } : { approved: true }; return { status: 'completed', output, side_effects: [], executor: { isolated: false, agent_id: 'fixture-human' } }; } const output = ['evaluate-story-engine@1', 'evaluate-short-outline@1'].includes(action.capability) ? { verdict: 'PASS', findings: [], constraint_checks: action.input.frozen_constraints.map((item) => ({ constraint_id: item.constraint_id, verdict: 'PASS', evidence: '匿名 fixture 的故事计划保持该冻结约束' })) } : outputs[action.capability]; if (!output) throw new Error(`fixture 缺少 ${action.capability}`); return { status: 'completed', output, side_effects: [], executor: action.isolation?.required ? { isolated: true, agent_id: `isolated-${action.capability}`, ...(action.isolation?.cold_read ? { cold_read_frozen_before_context: true } : {}) } : { isolated: false, agent_id: 'host-agent' } }; }
+const fast = await runUserJourney({ root, stateDir: userSpace.stateDir, start: { workflow: 'fast-short@2', runId: 'portable-fast-smoke', input: { mode: 'fast', brief: '帮我写一篇短故事', genre: 'dushi-naodong', platform: 'generic', selection: { mode: 'fast' } }, requestedBy: { agent_id: 'host-agent' } }, execute });
+assert.equal(fast.state, 'done');
+assert.equal(Object.hasOwn(fast, 'developer_diagnostics'), false);
+assert.equal(fast.delivery.title, '事故记录里，我明天会被开除');
+assert.equal(fast.delivery.story.chapters.length, 3);
+assert.match(fast.delivery.story.chapters[0].content, /检修屏/u);
+assert.equal(checkRun({ root, stateDir: userSpace.stateDir, runId: 'portable-fast-smoke', completable: true }).ok, true);
+const presented = runtimeCli(['present', '--run-id', 'portable-fast-smoke']);
+assert.equal(presented.state, 'done');
+assert.equal(Object.hasOwn(presented, 'developer_diagnostics'), false);
+const userContract = JSON.parse(fs.readFileSync(path.join(root, 'references/user-experience-contract.json'), 'utf8'));
+const userCopy = [fast.message, ...fast.delivery.next_options].join('\n');
+for (const term of userContract.hidden_terms) assert.equal(userCopy.includes(term), false, '默认用户文案泄漏内部术语：' + term);
 const fastWork = path.join(userSpace.worksDir, '事故记录里，我明天会被开除');
 assert.equal(fs.existsSync(path.join(fastWork, '正文/01.md')), true);
 assert.equal(fs.existsSync(path.join(fastWork, '投稿物料.md')), true);

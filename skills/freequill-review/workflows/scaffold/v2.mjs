@@ -1,3 +1,5 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { defineSequentialWorkflow, resultOutput } from '../../runtime/lib/workflow-kit.mjs';
 import { loadArtifact } from '../../runtime/lib/storage.mjs';
 import { createWork, materializeBookContext } from '../../runtime/workspace.mjs';
@@ -18,6 +20,23 @@ function selectedTitle(topic) {
   return topic?.title?.selection?.candidate?.title ?? topic?.title ?? null;
 }
 
+function loadL2Binding(root, genre) {
+  const ref = `references/craft/rules/l2-${genre}.json`;
+  const policy = JSON.parse(fs.readFileSync(path.resolve(root, ref), 'utf8'));
+  const l1 = JSON.parse(fs.readFileSync(path.resolve(root, 'references/craft/rules/l1-short.json'), 'utf8'));
+  if (policy.genre !== genre || typeof policy.core_emotion !== 'string' || !policy.core_emotion.trim()) {
+    throw new Error(`L2 品类绑定无效：${ref}`);
+  }
+  return {
+    source_ref: ref,
+    l1_version: l1.version,
+    l2_genre: policy.genre,
+    l2_version: policy.version,
+    core_emotion: policy.core_emotion,
+    instruction: 'book_policy.inherits 必须逐字复制 l1_version、l2_genre、l2_version；book_policy.core_emotion 必须逐字复制 core_emotion；本书具体情感主题写入 story_bible，不得改写继承字段',
+  };
+}
+
 export const workflow = defineSequentialWorkflow({
   id: 'scaffold', version: 2, title: 'FreeQuill 作品脚手架', outputArtifactType: 'scaffold-package',
   steps: [
@@ -32,7 +51,7 @@ export const workflow = defineSequentialWorkflow({
           const genre = input.genre ?? resolved.topic?.request?.genre;
           if (!GENRES.has(genre)) return { status: 'needs_input', required: ['genre'], reason: '脚手架需要受支持的 genre' };
           if (resolved.topic?.approval && resolved.topic.approval.approved !== true) return { status: 'blocked', reason: '选题尚未批准签出' };
-          return { passed: true, title: title.trim(), form: input.form ?? 'short', genre, topic_package: resolved.topic, selection_artifact_ref: resolved.artifact_ref };
+          return { passed: true, title: title.trim(), form: input.form ?? 'short', genre, l2_binding: loadL2Binding(root, genre), topic_package: resolved.topic, selection_artifact_ref: resolved.artifact_ref };
         } catch (error) {
           return { status: 'blocked', reason: '脚手架输入无效', details: { message: error.message } };
         }
@@ -49,7 +68,7 @@ export const workflow = defineSequentialWorkflow({
     {
       id: 'configure-book-context', kind: 'capability', capability: 'configure-book-context@2', outputArtifactType: 'book-context-candidate',
       policyRefs: ['policies/creation/short.v2.json'],
-      input: ({ results }) => ({ book_path: resultOutput(results, 'create-work').book_path, genre: resultOutput(results, 'input-gate').genre, topic_package: resultOutput(results, 'input-gate').topic_package }),
+      input: ({ results }) => ({ book_path: resultOutput(results, 'create-work').book_path, genre: resultOutput(results, 'input-gate').genre, l2_binding: resultOutput(results, 'input-gate').l2_binding, topic_package: resultOutput(results, 'input-gate').topic_package }),
     },
     {
       id: 'materialize-book-context', kind: 'deterministic', outputArtifactType: 'book-context-materialization', allowedSideEffects: ['workspace_write'],
